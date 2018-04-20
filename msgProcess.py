@@ -31,6 +31,6 @@ def msgIdentify(msg):
     if msg == '關於我':
         return TextSendMessage(text=aboutMe)
     elif msg == '學歷':
-        return TextSendMessage(text='我的名字叫 萬俊瑋\n性別是男生\n興趣是聽音樂、跳舞、看Youtube')
+        return education()
     else:
         return TextSendMessage(text='你說什麼？')
