@@ -20,13 +20,14 @@ class profileMenu():
         return msg in self.menuDict
 
     def chooseMenuOption(self, msg):
-        if menuDict[msg] == 'name':
+        option = self.menuDict[msg]
+        if option == 'name':
             self.__name()
-        if menuDict[msg] == 'aboutMe':
+        if option == 'aboutMe':
             self.__aboutMe()
-        if menuDict[msg] == 'education':
+        if option == 'education':
             self.__education()
-        if menuDict[msg] == 'personality':
+        if option == 'personality':
             self.__personality()
 
     def __name(self):
