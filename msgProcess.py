@@ -69,9 +69,9 @@ class profileMenu():
             )
         )
         try:
-            self.lineBotApi.push_message(userId, TextSendMessage(
+            self.lineBotApi.push_message(self.userId, TextSendMessage(
                 text='您好！ 我叫是萬俊瑋，下面這些小卡片可以幫助您了解我。'))
-            self.lineBotApi.push_message(userId, aboutMe)
+            self.lineBotApi.push_message(self.userId, aboutMe)
         except linebot.exceptions.LineBotApiError as e:
             print(e.status_code)
             print(e.error.message)
@@ -97,7 +97,7 @@ class profileMenu():
             )
         )
         try:
-            self.lineBotApi.push_message(userId, education)
+            self.lineBotApi.push_message(self.userId, education)
         except linebot.exceptions.LineBotApiError as e:
             print(e.status_code)
             print(e.error.message)
