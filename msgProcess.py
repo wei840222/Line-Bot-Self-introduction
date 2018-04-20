@@ -9,25 +9,24 @@ class profileMenu():
         self.pictureUrl = profile.picture_url
         self.statusMessage = profile.status_message
         self.lineBotApi = line_bot_api
-        self.menuOption = ['關於我', '學歷', '工作經驗', '專長', '作品', '聯繫方式', '個性', '你好', '您好', '名字', '稱呼']
+        self.menuDict = {\
+            '名字':'name', '稱呼':'name',\
+            '關於我':'aboutMe', '你好':'aboutMe', '您好':'aboutMe',\
+            '個性':'personality',\
+            '學歷':'education', '畢業':'education',\
+            }
 
     def isMenuOption(self, msg):
-        for mo in self.menuOption:
-            if mo in msg:
-                return True
-        return False
+        return msg in self.menuDict
 
     def chooseMenuOption(self, msg):
-        for mo in self.menuOption:
-            if mo in msg:
-                option = mo
-        if option == '名字' or option == '稱呼':
+        if menuDict[msg] == 'name':
             self.__name()
-        if option == '關於我' or option == '你好' or option == '您好':
+        if menuDict[msg] == 'aboutMe':
             self.__aboutMe()
-        if option == '學歷':
+        if menuDict[msg] == 'education':
             self.__education()
-        if option == '個性':
+        if menuDict[msg] == 'personality':
             self.__personality()
 
     def __name(self):
