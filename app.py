@@ -34,7 +34,7 @@ def callback():
 def handle_message(event):
     line_bot_api.reply_message(event.reply_token, msgIdentify(event.message.text))
     try:
-    line_bot_api.push_message(event.source.userId, TextSendMessage(text='Hello World!'))
+    line_bot_api.push_message('U69a03c6dc863cc8d777ec6b68d49fee5', TextSendMessage(text='Hello World!'))
         except LineBotApiError as e:
             # error handle
             pass
