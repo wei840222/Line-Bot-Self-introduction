@@ -3,6 +3,7 @@ from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
+from msgProcess import *
 
 
 app = Flask(__name__)
@@ -31,30 +32,24 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = TemplateSendMessage(
-        alt_text='Buttons template',
-        template=ButtonsTemplate(
-            thumbnail_image_url='https://example.com/image.jpg',
-            title='Menu',
-            text='Please select',
-            actions=[
-                PostbackTemplateAction(
-                    label='postback',
-                    text='postback text',
-                    data='action=buy&itemid=1'
-                ),
-                MessageTemplateAction(
-                    label='message',
-                    text='message text'
-                ),
-                URITemplateAction(
-                    label='uri',
-                    uri='http://example.com/'
-                )
-            ]
-        )
-    )
-    line_bot_api.reply_message(event.reply_token, message)
+    # log #
+    print("Handle: userId: " + event.source.user_id + ", reply_token: " + event.reply_token + ", message: " + event.message.text)
+    try:
+        profile = line_bot_api.get_profile(event.source.user_id)
+        print(profile.display_name)
+        print(profile.user_id)
+        print(profile.picture_url)
+        print(profile.status_message)
+    except LineBotApiError as e:
+        print('can\'t get user profile')
+    # log #
+
+    msg = event.message.text
+    pp = profileProblem(profile, line_bot_api)
+    if pp.isMenuOption(msg):
+        pp.chooseMenuOption(msg)
+    else:
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='我不了解「' + msg + '」是什麼意思。'))
 
 
 if __name__ == "__main__":
