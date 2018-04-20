@@ -1,4 +1,3 @@
-import requests
 from flask import Flask, request, abort
 
 from linebot import (
@@ -13,12 +12,10 @@ from linebot.models import (
 
 app = Flask(__name__)
 
-# Channel Access Token
 line_bot_api = LineBotApi('qIdHFZvo5+4GB4RnOmV+a+fIiSrAQJfXquzhZiNzAb/KzOkjQVvYXX9L9JTysNzDmfZe0pYkMWuwTiv4ocNsNeH9FRcyIS14ND5ZTgVOByI2Q/IAjgKYbI37a4tnX/KuIi+IEF5egYNn8lfLZehDCwdB04t89/1O/w1cDnyilFU=')
-# Channel Secret
 handler = WebhookHandler('5d2b3b485e228fc299ae89df9e34e36b')
 
-# listen /callback Post Request
+
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -39,10 +36,9 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    res = event.message.text
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=res))
+        TextSendMessage(text=event.message.text))
 
 
 if __name__ == "__main__":
