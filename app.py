@@ -6,7 +6,7 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSend
 app = Flask(__name__)
 
 # Channel Access Token
-line_bot_api = LineBotApi('UHx4krGjn312dEscSbJBzj/epUFsy5lCQUSlcqTYLYkUK8QnU+yr9d7oPfA/a7LAmfZe0pYkMWuwTiv4ocNsNeH9FRcyIS14ND5ZTgVOByLXcf+4AN2hzMsx5cZ4/RD9PI/gNn1e0L/eI73PCw5hPwdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('qIdHFZvo5+4GB4RnOmV+a+fIiSrAQJfXquzhZiNzAb/KzOkjQVvYXX9L9JTysNzDmfZe0pYkMWuwTiv4ocNsNeH9FRcyIS14ND5ZTgVOByI2Q/IAjgKYbI37a4tnX/KuIi+IEF5egYNn8lfLZehDCwdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
 handler = WebhookHandler('5d2b3b485e228fc299ae89df9e34e36b')
 
