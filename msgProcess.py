@@ -34,7 +34,7 @@ def getTemplte():
 
 def msgIdentify(msg):
     msgDict = {'@關於我':aboutMe}
-    reMsg = msgDict[msg]
+    reMsg = msgDict[str(msg)]
     if reMsg is not None:
         return TextSendMessage(text=reMsg)
     else:
