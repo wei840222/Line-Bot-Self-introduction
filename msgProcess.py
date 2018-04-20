@@ -16,9 +16,9 @@ class profileMenu():
 
     def chooseMenuOption(self, msg):
         if msg == '關於我':
-            __aboutMe()
+            self.__aboutMe()
         if msg == '學歷':
-            __education()
+            self.__education()
 
     def __aboutMe(self):
         aboutMe = TemplateSendMessage(
@@ -69,9 +69,9 @@ class profileMenu():
             )
         )
         try:
-            lineBotApi.push_message(userId, TextSendMessage(
+            self.lineBotApi.push_message(userId, TextSendMessage(
                 text='您好！ 我叫是萬俊瑋，下面這些小卡片可以幫助您了解我。'))
-            lineBotApi.push_message(userId, aboutMe)
+            self.lineBotApi.push_message(userId, aboutMe)
         except linebot.exceptions.LineBotApiError as e:
             print(e.status_code)
             print(e.error.message)
@@ -97,7 +97,7 @@ class profileMenu():
             )
         )
         try:
-            lineBotApi.push_message(userId, education)
+            self.lineBotApi.push_message(userId, education)
         except linebot.exceptions.LineBotApiError as e:
             print(e.status_code)
             print(e.error.message)
