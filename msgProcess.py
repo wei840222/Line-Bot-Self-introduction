@@ -68,14 +68,14 @@ class profileProblem():
             template=ButtonsTemplate(
                 thumbnail_image_url='https://www.ntut.edu.tw/ezfiles/21/1021/img/2152/logo.jpg',
                 title='學歷',
-                text='碩士班(在學中)\n國立臺北科技大學 資訊工程學系\n\n大學(畢業)\n國立嘉義大學 電機工程學系',
+                text='碩士班(在學中):國立臺北科技大學 資訊工程學系\n大學(畢業):國立嘉義大學 電機工程學系',
                 actions=[
                     URITemplateAction(
-                        label='國立臺北科技大學 資訊工程學系',
+                        label='北科大 資工系',
                         uri='http://csie.ntut.edu.tw/csie/index_i.htm'
                     ),
                     URITemplateAction(
-                        label='國立嘉義大學 電機工程學系',
+                        label='嘉義大學 電機系',
                         uri='http://www.ncyu.edu.tw/ee/'
                     )
                 ]
