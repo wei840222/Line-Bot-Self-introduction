@@ -9,16 +9,24 @@ class profileMenu():
         self.pictureUrl = profile.picture_url
         self.statusMessage = profile.status_message
         self.lineBotApi = line_bot_api
-        self.menuOption = ['關於我', '學歷', '工作經驗', '專長', '作品集', '聯繫方式']
+        self.menuOption = ['關於我', '學歷', '工作經驗', '專長', '作品集', '聯繫方式', '個性']
 
     def isMenuOption(self, msg):
-        return msg in self.menuOption
+        for mo in self.menuOption:
+            if mo in msg:
+                return True
+        return False
 
     def chooseMenuOption(self, msg):
-        if msg == '關於我':
+        for mo in self.menuOption:
+            if mo in msg:
+                option = mo
+        if option == '關於我':
             self.__aboutMe()
-        if msg == '學歷':
+        if option == '學歷':
             self.__education()
+        if option == '個性':
+            self.__personality()
 
     def __aboutMe(self):
         aboutMe = TemplateSendMessage(
@@ -26,42 +34,32 @@ class profileMenu():
             template=CarouselTemplate(
                 columns=[
                     CarouselColumn(
-                        thumbnail_image_url='https://example.com/item1.jpg',
+                        thumbnail_image_url='http://dl.profile.line-cdn.net/0m0141d2787251505f7b256e319a705112ad315105a5f8',
                         title='萬俊瑋',
-                        text='description1',
+                        text='我的名字',
                         actions=[
-                            PostbackTemplateAction(
-                                label='postback1',
-                                text='postback text1',
-                                data='action=buy&itemid=1'
-                            ),
                             MessageTemplateAction(
-                                label='message1',
-                                text='message text1'
-                            ),
-                            URITemplateAction(
-                                label='uri1',
-                                uri='http://example.com/1'
+                                label='個性',
+                                text='個性'
                             )
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url='https://example.com/item2.jpg',
-                        title='this is menu2',
-                        text='description2',
+                        thumbnail_image_url='http://www.people.com.cn/mediafile/pic/20160428/1/13513915896936444957.jpg',
+                        title='興趣',
+                        text='喜歡聽音樂',
                         actions=[
-                            PostbackTemplateAction(
-                                label='postback2',
-                                text='postback text2',
-                                data='action=buy&itemid=2'
-                            ),
-                            MessageTemplateAction(
-                                label='message2',
-                                text='message text2'
+                            URITemplateAction(
+                                label='[EXID(이엑스아이디)] 덜덜덜(DDD) 뮤직 비디오',
+                                uri='https://www.youtube.com/watch?v=axVvZrDz60k&list=PL7f6_T4y_Sv8Dsr04sRBJX95PqDtkK2Ea&index=1&t=0s'
                             ),
                             URITemplateAction(
-                                label='uri2',
-                                uri='http://example.com/2'
+                                label='閻奕格 Janice Yan [ 也可以 ] (電影「追婚日記」插曲) 片花版',
+                                uri='https://www.youtube.com/watch?v=PZGwZwGQTlk&index=1&list=PL7f6_T4y_Sv9dHswKWWx34OAbzp_mzCUR&t=0s'
+                            ),
+                            URITemplateAction(
+                                label='DJ Cassidy - Make the World Go Round ft. R. Kelly',
+                                uri='https://www.youtube.com/watch?v=HeC-Hj97eak&index=1&list=PL7f6_T4y_Sv_gSrrvL5Q_8vunJxq8aaxO&t=0s'
                             )
                         ]
                     )
@@ -72,6 +70,15 @@ class profileMenu():
             self.lineBotApi.push_message(self.userId, TextSendMessage(
                 text='您好！ 我叫是萬俊瑋，下面這些小卡片可以幫助您了解我。'))
             self.lineBotApi.push_message(self.userId, aboutMe)
+        except linebot.exceptions.LineBotApiError as e:
+            print(e.status_code)
+            print(e.error.message)
+            print(e.error.details)
+
+    def __personality(self):
+        try:
+            self.lineBotApi.push_message(self.userId, TextSendMessage(
+                text='個性樂觀,可以有條理的安排事情,學習能力高,擅長與人合作執行專案。'))
         except linebot.exceptions.LineBotApiError as e:
             print(e.status_code)
             print(e.error.message)
