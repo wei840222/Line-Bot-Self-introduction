@@ -49,7 +49,7 @@ def handle_message(event):
     if pm.isMenuOption(msg):
         pm.chooseMenuOption(msg)
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='我不了解' + msg + '是什麼意思。'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='我不了解「' + msg + '」是什麼意思。'))
 
 
 if __name__ == "__main__":
