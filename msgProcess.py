@@ -18,13 +18,13 @@ class profileMenu():
 
     def isMenuOption(self, msg):
         for key in self.menuDict.keys():
-            if msg in key:
+            if key in msg:
                 return True
         return False
 
     def chooseMenuOption(self, msg):
         for key in self.menuDict.keys():
-            if msg in key:
+            if key in msg:
                 option = self.menuDict[key]
         if option == 'name':
             self.__name()
