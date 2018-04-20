@@ -6,26 +6,21 @@ aboutMe = '''
 興趣是聽音樂、跳舞、看Youtube
 '''
 
-def getTemplte():
+def education():
     message = TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(
-            thumbnail_image_url='https://example.com/image.jpg',
-            title='Menu',
-            text='Please select',
+            thumbnail_image_url='https://www.ntut.edu.tw/ezfiles/21/1021/img/2152/logo.jpg',
+            title='學歷',
+            text='在學中...',
             actions=[
-                PostbackTemplateAction(
-                    label='postback',
-                    text='postback text',
-                    data='action=buy&itemid=1'
-                ),
-                MessageTemplateAction(
-                    label='message',
-                    text='message text'
+                URITemplateAction(
+                    label='碩士班：國立臺北科技大學 資訊工程學系',
+                    uri='http://csie.ntut.edu.tw/csie/index_i.htm'
                 ),
                 URITemplateAction(
-                    label='uri',
-                    uri='http://example.com/'
+                    label='大學：國立嘉義大學 電機工程學系',
+                    uri='http://www.ncyu.edu.tw/ee/'
                 )
             ]
         )
@@ -33,9 +28,9 @@ def getTemplte():
     return message
 
 def msgIdentify(msg):
-    msgDict = {'@關於我':aboutMe}
-    reMsg = msgDict[str(msg)]
-    if reMsg is not None:
-        return TextSendMessage(text=reMsg)
+    if msg == '@關於我':
+        return TextSendMessage(text=aboutMe)
+    elif msg == '@學歷':
+        return TextSendMessage(text='我的名字叫 萬俊瑋\n性別是男生\n興趣是聽音樂、跳舞、看Youtube')
     else:
         return TextSendMessage(text='你說什麼？')
