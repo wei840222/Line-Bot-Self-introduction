@@ -25,3 +25,9 @@ def getTemplte():
         )
     )
     return message
+
+def msgIdentify(msg):
+    if msg == '樣板':
+        return getTemplte()
+    if msg == '你好':
+        return TextSendMessage(text='你好'))
