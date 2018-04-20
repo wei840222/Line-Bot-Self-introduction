@@ -44,25 +44,25 @@ class profileMenu():
                             )
                         ]
                     ),
-                    CarouselColumn(
-                        thumbnail_image_url='http://www.people.com.cn/mediafile/pic/20160428/1/13513915896936444957.jpg',
-                        title='興趣',
-                        text='喜歡聽音樂',
-                        actions=[
-                            URITemplateAction(
-                                label='[EXID(이엑스아이디)] 덜덜덜(DDD) 뮤직 비디오',
-                                uri='https://www.youtube.com/watch?v=axVvZrDz60k&list=PL7f6_T4y_Sv8Dsr04sRBJX95PqDtkK2Ea&index=1&t=0s'
-                            ),
-                            URITemplateAction(
-                                label='閻奕格 Janice Yan [ 也可以 ] (電影「追婚日記」插曲) 片花版',
-                                uri='https://www.youtube.com/watch?v=PZGwZwGQTlk&index=1&list=PL7f6_T4y_Sv9dHswKWWx34OAbzp_mzCUR&t=0s'
-                            ),
-                            URITemplateAction(
-                                label='DJ Cassidy - Make the World Go Round ft. R. Kelly',
-                                uri='https://www.youtube.com/watch?v=HeC-Hj97eak&index=1&list=PL7f6_T4y_Sv_gSrrvL5Q_8vunJxq8aaxO&t=0s'
-                            )
-                        ]
-                    )
+                    # CarouselColumn(
+                    #     thumbnail_image_url='http://www.people.com.cn/mediafile/pic/20160428/1/13513915896936444957.jpg',
+                    #     title='興趣',
+                    #     text='喜歡聽音樂',
+                    #     actions=[
+                    #         URITemplateAction(
+                    #             label='[EXID(이엑스아이디)] 덜덜덜(DDD) 뮤직 비디오',
+                    #             uri='https://www.youtube.com/watch?v=axVvZrDz60k&list=PL7f6_T4y_Sv8Dsr04sRBJX95PqDtkK2Ea&index=1&t=0s'
+                    #         ),
+                    #         URITemplateAction(
+                    #             label='閻奕格 Janice Yan [ 也可以 ] (電影「追婚日記」插曲) 片花版',
+                    #             uri='https://www.youtube.com/watch?v=PZGwZwGQTlk&index=1&list=PL7f6_T4y_Sv9dHswKWWx34OAbzp_mzCUR&t=0s'
+                    #         ),
+                    #         URITemplateAction(
+                    #             label='DJ Cassidy - Make the World Go Round ft. R. Kelly',
+                    #             uri='https://www.youtube.com/watch?v=HeC-Hj97eak&index=1&list=PL7f6_T4y_Sv_gSrrvL5Q_8vunJxq8aaxO&t=0s'
+                    #         )
+                    #     ]
+                    # )
                 ]
             )
         )
