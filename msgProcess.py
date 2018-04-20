@@ -2,7 +2,7 @@ import linebot
 from linebot.models import *
 
 
-class profileMenu():
+class profileProblem():
     def __init__(self, profile, line_bot_api):
         self.displayName = profile.display_name
         self.userId = profile.user_id

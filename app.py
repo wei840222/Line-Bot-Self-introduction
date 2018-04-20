@@ -45,9 +45,9 @@ def handle_message(event):
     # log #
 
     msg = event.message.text
-    pm = profileMenu(profile, line_bot_api)
-    if pm.isMenuOption(msg):
-        pm.chooseMenuOption(msg)
+    pp = profileProblem(profile, line_bot_api)
+    if pp.isMenuOption(msg):
+        pp.chooseMenuOption(msg)
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='我不了解「' + msg + '」是什麼意思。'))
 
