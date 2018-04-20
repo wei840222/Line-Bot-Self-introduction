@@ -17,10 +17,15 @@ class profileMenu():
             }
 
     def isMenuOption(self, msg):
-        return msg in self.menuDict
+        for key in self.menuDict.keys():
+            if msg in key:
+                return True
+        return False
 
     def chooseMenuOption(self, msg):
-        option = self.menuDict[msg]
+        for key in self.menuDict.keys():
+            if msg in key:
+                option = self.menuDict[key]
         if option == 'name':
             self.__name()
         if option == 'aboutMe':
