@@ -1,6 +1,6 @@
 from linebot import *
 from linebot.models import *
-from linebot.models import RichMenu, RichMenuArea, RichMenuBound
+import linebot.models.RichMenu
 
 class profileProblem():
     def __init__(self, profile, line_bot_api):
