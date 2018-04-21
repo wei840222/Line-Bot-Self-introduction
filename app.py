@@ -3,36 +3,7 @@ from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
-from msgProcess import *
 import message
-
-
-def richMenuTest(line_bot_api, user_id):
-    rich_menu_to_create = RichMenu(
-        size=RichMenuBound(
-            width=2500,
-            height=1686
-        ),
-        selected=False,
-        name="nice richmenu",
-        chatBarText="touch me",
-        areas=[
-            RichMenuArea(
-                RichMenuBound(
-                    x=0,
-                    y=0,
-                    width=2500,
-                    height=1686
-                ),
-                URITemplateAction(
-                    uri='line://nv/location'
-                )
-            )
-        ]
-    )
-    rich_menu_id = line_bot_api.create_rich_menu(data=rich_menu_to_create)
-    print(rich_menu_id)
-    line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
 
 
 app = Flask(__name__)
@@ -74,25 +45,31 @@ def handle_message(event):
         print('can\'t get user profile')
     # log #
 
-    msg = event.message.text
-    pp = profileProblem(profile, line_bot_api)
-    if pp.isMenuOption(msg):
-        pp.chooseMenuOption(msg)
-    elif msg == 'richMenuTest':
-        richMenuTest(line_bot_api, profile.user_id)
+    msgDict = {
+        '你好': message.hi, '您好': message.hi,
+        '名字': message.name, '稱呼': message.name,
+        '關於我': message.aboutMe, 
+        '個性': message.personality,
+        '學歷': message.education, '畢業': message.education,
+    }
+    for key in msgDict.keys():
+        if key in event.message.text:
+            line_bot_api.reply_message(event.reply_token, msgDict[key])
+            return None
+    if event.message.text == 'test':
+        try:
+            line_bot_api.push_message(profile.user_id, message.aboutMe)
+            line_bot_api.push_message(profile.user_id, message.personality)
+            line_bot_api.push_message(profile.user_id, message.interesting)
+            line_bot_api.push_message(profile.user_id, message.education)
+            line_bot_api.push_message(profile.user_id, message.expertise)
+        except LineBotApiError as e:
+            print(e.status_code)
+            print(e.error.message)
+            print(e.error.details)
     else:
-        line_bot_api.reply_message(
-            event.reply_token, TextSendMessage(text='我不了解「' + msg + '」是什麼意思。'))
-    try:
-        line_bot_api.push_message(profile.user_id, message.aboutMe)
-        line_bot_api.push_message(profile.user_id, message.personality)
-        line_bot_api.push_message(profile.user_id, message.interesting)
-        line_bot_api.push_message(profile.user_id, message.education)
-        line_bot_api.push_message(profile.user_id, message.expertise)
-    except LineBotApiError as e:
-        print(e.status_code)
-        print(e.error.message)
-        print(e.error.details)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='我不了解「' + msg + '」是什麼意思。'))
+    
 
 
 if __name__ == "__main__":
