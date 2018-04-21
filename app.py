@@ -84,12 +84,12 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text='我不了解「' + msg + '」是什麼意思。'))
     try:
-        lineBotApi.push_message(profile.user_id, message.aboutMe)
-        lineBotApi.push_message(profile.user_id, message.personality)
-        lineBotApi.push_message(profile.user_id, message.interesting)
-        lineBotApi.push_message(profile.user_id, message.education)
-        lineBotApi.push_message(profile.user_id, message.expertise)
-    except linebot.exceptions.LineBotApiError as e:
+        line_bot_api.push_message(profile.user_id, message.aboutMe)
+        line_bot_api.push_message(profile.user_id, message.personality)
+        line_bot_api.push_message(profile.user_id, message.interesting)
+        line_bot_api.push_message(profile.user_id, message.education)
+        line_bot_api.push_message(profile.user_id, message.expertise)
+    except LineBotApiError as e:
         print(e.status_code)
         print(e.error.message)
         print(e.error.details)
