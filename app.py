@@ -54,17 +54,17 @@ def handle_message(event):
         '學歷': message.education, '畢業': message.education,
         '專長': message.expertise, '程式': message.expertise, '會什麼': message.expertise,
     }
+
+    # search key word in msgDict
     for key in msgDict.keys():
         if key in event.message.text:
             line_bot_api.reply_message(event.reply_token, msgDict[key])
             return None
+    
+    # for test
     if event.message.text == 'test':
         try:
-            line_bot_api.push_message(profile.user_id, message.aboutMe)
-            line_bot_api.push_message(profile.user_id, message.personality)
-            line_bot_api.push_message(profile.user_id, message.interesting)
-            line_bot_api.push_message(profile.user_id, message.education)
-            line_bot_api.push_message(profile.user_id, message.expertise)
+            line_bot_api.push_message(profile.user_id, message.works)
         except LineBotApiError as e:
             print(e.status_code)
             print(e.error.message)

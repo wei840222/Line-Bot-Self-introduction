@@ -30,10 +30,92 @@ education = TemplateSendMessage(
         title='學歷',
         text='碩士班(在學中):國立臺北科技大學 資訊工程學系\n大學(畢業):國立嘉義大學 電機工程學系',
         actions=[
-            URITemplateAction(label='北科大 資工系', uri='http://csie.ntut.edu.tw/csie/index_i.htm'),
-            URITemplateAction(label='嘉義大學 電機系', uri='http://www.ncyu.edu.tw/ee/')
+            URITemplateAction(
+                label='北科大 資工系', uri='http://csie.ntut.edu.tw/csie/index_i.htm'),
+            URITemplateAction(label='嘉義大學 電機系',
+                              uri='http://www.ncyu.edu.tw/ee/')
         ]
     )
 )
 
 expertise = TextSendMessage(text='C/C++, Python, Linux, Embedded System')
+
+works = TemplateSendMessage(
+    alt_text='Works',
+    template=CarouselTemplate(
+        columns=[
+            CarouselColumn(
+                thumbnail_image_url='https://example.com/item1.jpg',
+                title='智慧型電動助力單車暨行車資訊顯示系統之實現',
+                text='大三專題',
+                actions=[
+                    PostbackTemplateAction(
+                        label='postback1', text='postback text1', data='action=buy&itemid=1'),
+                    MessageTemplateAction(
+                        label='message1', text='message text1'),
+                    URITemplateAction(label='uri1', uri='http://example.com/1')
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url='https://example.com/item1.jpg',
+                title='田間自走機器人',
+                text='大四專題',
+                actions=[
+                    PostbackTemplateAction(
+                        label='postback1', text='postback text1', data='action=buy&itemid=1'),
+                    MessageTemplateAction(
+                        label='message1', text='message text1'),
+                    URITemplateAction(label='uri1', uri='http://example.com/1')
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/12009638_963539677040953_6771453829148070682_n.jpg?_nc_cat=0&oh=4ec5cd60367d47d3d70c1653e5c1ae7f&oe=5B5B8C1B',
+                title='8051俄羅斯方塊',
+                text='大二課程專案',
+                actions=[
+                    PostbackTemplateAction(
+                        label='postback1', text='postback text1', data='action=buy&itemid=1'),
+                    MessageTemplateAction(
+                        label='message1', text='message text1'),
+                    URITemplateAction(label='uri1', uri='http://example.com/1')
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url='https://example.com/item1.jpg',
+                title='C#小遊戲 打泡',
+                text='大三課程專案',
+                actions=[
+                    PostbackTemplateAction(
+                        label='postback1', text='postback text1', data='action=buy&itemid=1'),
+                    MessageTemplateAction(
+                        label='message1', text='message text1'),
+                    URITemplateAction(label='uri1', uri='http://example.com/1')
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url='https://example.com/item1.jpg',
+                title='Fuzzy倒車入庫圖形介面',
+                text='大三課外專案',
+                actions=[
+                    PostbackTemplateAction(
+                        label='postback1', text='postback text1', data='action=buy&itemid=1'),
+                    MessageTemplateAction(
+                        label='message1', text='message text1'),
+                    URITemplateAction(label='uri1', uri='http://example.com/1')
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url='https://example.com/item1.jpg',
+                title='106年扎根高中職資訊科學教育計劃網站',
+                text='研一計畫網站',
+                actions=[
+                    PostbackTemplateAction(
+                        label='postback1', text='postback text1', data='action=buy&itemid=1'),
+                    MessageTemplateAction(
+                        label='message1', text='message text1'),
+                    URITemplateAction(label='uri1', uri='http://example.com/1')
+                ]
+            ),
+        ]
+    )
+)
