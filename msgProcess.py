@@ -1,6 +1,5 @@
 from linebot import *
 from linebot.models import *
-from linebot.LineBotApi import *
 
 class profileProblem():
     def __init__(self, profile, line_bot_api):
@@ -87,31 +86,3 @@ class profileProblem():
             print(e.status_code)
             print(e.error.message)
             print(e.error.details)
-
-
-def richMenuTest(line_bot_api, user_id):
-    rich_menu_to_create = RichMenu(
-        size=RichMenuBound(
-            width=2500,
-            height=1686
-        ),
-        selected=False,
-        name="nice richmenu",
-        chatBarText="touch me",
-        areas=[
-            RichMenuArea(
-                RichMenuBound(
-                    x=0,
-                    y=0,
-                    width=2500,
-                    height=1686
-                ),
-                URITemplateAction(
-                    uri='line://nv/location'
-                )
-            )
-        ]
-    )
-    rich_menu_id = line_bot_api.create_rich_menu(data=rich_menu_to_create)
-    print(rich_menu_id)
-    line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)

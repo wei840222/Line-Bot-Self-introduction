@@ -6,6 +6,34 @@ from linebot.models import *
 from msgProcess import *
 
 
+def richMenuTest(line_bot_api, user_id):
+    rich_menu_to_create = RichMenu(
+        size=RichMenuBound(
+            width=2500,
+            height=1686
+        ),
+        selected=False,
+        name="nice richmenu",
+        chatBarText="touch me",
+        areas=[
+            RichMenuArea(
+                RichMenuBound(
+                    x=0,
+                    y=0,
+                    width=2500,
+                    height=1686
+                ),
+                URITemplateAction(
+                    uri='line://nv/location'
+                )
+            )
+        ]
+    )
+    rich_menu_id = line_bot_api.create_rich_menu(data=rich_menu_to_create)
+    print(rich_menu_id)
+    line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
+
+
 app = Flask(__name__)
 
 line_bot_api = LineBotApi(os.environ.get('ACCESS_TOKEN'))
@@ -33,7 +61,8 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     # log #
-    print("Handle: userId: " + event.source.user_id + ", reply_token: " + event.reply_token + ", message: " + event.message.text)
+    print("Handle: userId: " + event.source.user_id + ", reply_token: " +
+          event.reply_token + ", message: " + event.message.text)
     try:
         profile = line_bot_api.get_profile(event.source.user_id)
         print(profile.display_name)
@@ -51,7 +80,8 @@ def handle_message(event):
     elif msg == 'richMenuTest':
         richMenuTest(line_bot_api, profile.user_id)
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='我不了解「' + msg + '」是什麼意思。'))
+        line_bot_api.reply_message(
+            event.reply_token, TextSendMessage(text='我不了解「' + msg + '」是什麼意思。'))
 
 
 if __name__ == "__main__":
