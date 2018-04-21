@@ -1,6 +1,6 @@
 from linebot import *
 from linebot.models import *
-from LineBotApi import *
+from linebot.LineBotApi import *
 
 class profileProblem():
     def __init__(self, profile, line_bot_api):
