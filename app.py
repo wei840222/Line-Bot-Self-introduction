@@ -50,7 +50,9 @@ def handle_message(event):
         '名字': message.name, '稱呼': message.name,
         '關於我': message.aboutMe, 
         '個性': message.personality,
+        '興趣': message.interesting, '愛好': message.interesting,
         '學歷': message.education, '畢業': message.education,
+        '專長': message.expertise, '程式': message.expertise, '會什麼': message.expertise,
     }
     for key in msgDict.keys():
         if key in event.message.text:
@@ -68,7 +70,7 @@ def handle_message(event):
             print(e.error.message)
             print(e.error.details)
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='我不了解「' + msg + '」是什麼意思。'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='我不了解「' + event.message.text + '」是什麼意思。'))
     
 
 
