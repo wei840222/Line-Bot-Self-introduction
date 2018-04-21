@@ -4,6 +4,7 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
 from msgProcess import *
+import .message
 
 
 def richMenuTest(line_bot_api, user_id):
@@ -82,6 +83,16 @@ def handle_message(event):
     else:
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text='我不了解「' + msg + '」是什麼意思。'))
+    try:
+        lineBotApi.push_message(profile.user_id, message.aboutMe)
+        lineBotApi.push_message(profile.user_id, message.personality)
+        lineBotApi.push_message(profile.user_id, message.interesting)
+        lineBotApi.push_message(profile.user_id, message.education)
+        lineBotApi.push_message(profile.user_id, message.expertise)
+    except linebot.exceptions.LineBotApiError as e:
+        print(e.status_code)
+        print(e.error.message)
+        print(e.error.details)
 
 
 if __name__ == "__main__":
