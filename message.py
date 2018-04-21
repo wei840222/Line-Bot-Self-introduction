@@ -72,7 +72,7 @@ works = TemplateSendMessage(
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://i.ytimg.com/vi/MJCkf-ytCRo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIZCGAFwAQ==&rs=AOn4CLBzcxJfEXdbiQt1xAIgTXH9AI_CeQ',
+                thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30806226_1772336019494644_441235318761401904_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEprbZornWvxRBZfWJ5JmaL3pR_F_6P8hPqu4tVVzBYfUIPCIaAbeMQPGXncwRVh-JWhNN0J-SyTnjTKlk-ELpop1cEBvRjjsaHnYU0GKpTYw&oh=d67e5b3958b60c398c80a1a120078e4f&oe=5B50C6E3',
                 title='Fuzzy倒車入庫圖形介面',
                 text='大三課外專案',
                 actions=[
