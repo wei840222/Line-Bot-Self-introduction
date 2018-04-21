@@ -45,53 +45,24 @@ works = TemplateSendMessage(
     template=CarouselTemplate(
         columns=[
             CarouselColumn(
-                thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/12009638_963539677040953_6771453829148070682_n.jpg?_nc_cat=0&oh=4ec5cd60367d47d3d70c1653e5c1ae7f&oe=5B5B8C1B',
+                thumbnail_image_url='https://goo.gl/TSHPoY',
                 title='智慧型電動助力單車暨行車資訊顯示系統之實現',
                 text='大三專題',
                 actions=[
                     MessageTemplateAction(label='個性', text='個性'),
-                    URITemplateAction(label='企劃書', uri='https://drive.google.com/open?id=1XTiU8S3ngquCqHZ4q1sZBdrfIYaJlws8'),
+                    URITemplateAction(label='企劃書', uri='https://goo.gl/aAJ2fQ'),
                     URITemplateAction(label='GitHub', uri='https://github.com/wei840222/NCYU-EE-Autobike-2015')
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30171491_1772327049495541_4755542864197533817_o.jpg?_nc_cat=0&oh=c3cd5d593736f184ff3b9e0a018b6902&oe=5B6C53CF',
+                thumbnail_image_url='https://goo.gl/2MxPDu',
                 title='田間自走機器人',
                 text='大四專題',
                 actions=[
                     MessageTemplateAction(label='個性', text='個性'),
-                    URITemplateAction(label='企劃書', uri='https://drive.google.com/open?id=1u17Cp5ssgcn4TktN3-nV0S_nUAnIRd3f'),
-                    URITemplateAction(label='影片', uri='https://www.youtube.com/watch?v=MTnS6NO3fM4&t=147s'),
+                    URITemplateAction(label='企劃書', uri='https://goo.gl/L5CeHG'),
+                    URITemplateAction(label='影片', uri='https://goo.gl/VT1kq5'),
                     URITemplateAction(label='GitHub', uri='https://github.com/wei840222/Farm-Self-Propelled-Robot')
-                ]
-            ),
-            CarouselColumn(
-                thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/12009638_963539677040953_6771453829148070682_n.jpg?_nc_cat=0&oh=4ec5cd60367d47d3d70c1653e5c1ae7f&oe=5B5B8C1B',
-                title='8051俄羅斯方塊',
-                text='大二課程專案',
-                actions=[
-                    MessageTemplateAction(label='個性', text='個性'),
-                    URITemplateAction(label='影片', uri='https://www.youtube.com/watch?v=B3hKuGS1lDE')
-                ]
-            ),
-            CarouselColumn(
-                thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30806226_1772336019494644_441235318761401904_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEprbZornWvxRBZfWJ5JmaL3pR_F_6P8hPqu4tVVzBYfUIPCIaAbeMQPGXncwRVh-JWhNN0J-SyTnjTKlk-ELpop1cEBvRjjsaHnYU0GKpTYw&oh=d67e5b3958b60c398c80a1a120078e4f&oe=5B50C6E3',
-                title='Fuzzy倒車入庫圖形介面',
-                text='大三課外專案',
-                actions=[
-                    MessageTemplateAction(label='個性', text='個性'),
-                    URITemplateAction(label='影片', uri='https://www.youtube.com/watch?v=MJCkf-ytCRo'),
-                    URITemplateAction(label='GitHub', uri='https://github.com/wei840222/Fuzzy-OpenGL-GUI')
-                ]
-            ),
-            CarouselColumn(
-                thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30171866_1772331252828454_6163523175446030911_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeERbMugA9iJGTieZM7h6tmBAkG8pUEVGlBd2eUO1hGr2_P-nx-m7A8NcldbRSb3_vtH2RsNwXEHpZpSFw9dr5648f7CIvuyn98CZWnMGgP0ow&oh=9cd64d8b408b515b85c515d26187d0dc&oe=5B56E453',
-                title='106年扎根高中職資訊科學教育計劃網站',
-                text='研一計畫網站',
-                actions=[
-                    MessageTemplateAction(label='個性', text='個性'),
-                    URITemplateAction(label='網址', uri='http://acl.csie.ntut.edu.tw/seniorhigh/index.html'),
-                    URITemplateAction(label='GitHub', uri='https://github.com/wei840222/106-High-School-Website')
                 ]
             )
         ]
