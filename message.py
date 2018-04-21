@@ -100,16 +100,10 @@ works = TemplateSendMessage(
 
 works1_video_message = TextSendMessage(text='抱歉這個專案沒有影片喔！ QQ')
 
-works2_video_message = TextSendMessage(text='http://140.124.181.76/farmrobot.mp4')
+works2_video_message = TextSendMessage(text='https://youtu.be/MTnS6NO3fM4')
 
-works3_video_message = VideoSendMessage(
-    original_content_url='http://140.124.181.76/8051.mp4',
-    preview_image_url='https://i.ytimg.com/vi/B3hKuGS1lDE/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIZCGAFwAQ==&rs=AOn4CLCmOe1W_jfs_v75Smu9tPtiiPPrWQ'
-)
+works3_video_message = TextSendMessage(text='https://youtu.be/B3hKuGS1lDE')
 
-works4_video_message = VideoSendMessage(
-    original_content_url='http://140.124.181.76/fuzzy.mp4',
-    preview_image_url='https://i.ytimg.com/vi/MJCkf-ytCRo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIZCGAFwAQ==&rs=AOn4CLBzcxJfEXdbiQt1xAIgTXH9AI_CeQ'
-)
+works4_video_message = TextSendMessage(text='https://youtu.be/MJCkf-ytCRo')
 
 works5_video_message = works1_video_message
