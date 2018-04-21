@@ -45,7 +45,7 @@ works = TemplateSendMessage(
     template=CarouselTemplate(
         columns=[
             CarouselColumn(
-                thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/12009638_963539677040953_6771453829148070682_n.jpg?_nc_cat=0&oh=4ec5cd60367d47d3d70c1653e5c1ae7f&oe=5B5B8C1B',
+                thumbnail_image_url='',
                 title='智慧型電動助力單車暨行車資訊顯示系統之實現',
                 text='大三專題',
                 actions=[
@@ -54,7 +54,7 @@ works = TemplateSendMessage(
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30171491_1772327049495541_4755542864197533817_o.jpg?_nc_cat=0&oh=c3cd5d593736f184ff3b9e0a018b6902&oe=5B6C53CF',
+                thumbnail_image_url='',
                 title='田間自走機器人',
                 text='大四專題',
                 actions=[
@@ -64,7 +64,7 @@ works = TemplateSendMessage(
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/12009638_963539677040953_6771453829148070682_n.jpg?_nc_cat=0&oh=4ec5cd60367d47d3d70c1653e5c1ae7f&oe=5B5B8C1B',
+                thumbnail_image_url='',
                 title='8051俄羅斯方塊',
                 text='大二課程專案',
                 actions=[
@@ -72,7 +72,7 @@ works = TemplateSendMessage(
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30806226_1772336019494644_441235318761401904_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEprbZornWvxRBZfWJ5JmaL3pR_F_6P8hPqu4tVVzBYfUIPCIaAbeMQPGXncwRVh-JWhNN0J-SyTnjTKlk-ELpop1cEBvRjjsaHnYU0GKpTYw&oh=d67e5b3958b60c398c80a1a120078e4f&oe=5B50C6E3',
+                thumbnail_image_url='',
                 title='Fuzzy倒車入庫圖形介面',
                 text='大三課外專案',
                 actions=[
@@ -81,7 +81,7 @@ works = TemplateSendMessage(
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30171866_1772331252828454_6163523175446030911_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeERbMugA9iJGTieZM7h6tmBAkG8pUEVGlBd2eUO1hGr2_P-nx-m7A8NcldbRSb3_vtH2RsNwXEHpZpSFw9dr5648f7CIvuyn98CZWnMGgP0ow&oh=9cd64d8b408b515b85c515d26187d0dc&oe=5B56E453',
+                thumbnail_image_url='',
                 title='106年扎根高中職資訊科學教育計劃網站',
                 text='研一計畫網站',
                 actions=[
