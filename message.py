@@ -90,10 +90,29 @@ works = TemplateSendMessage(
                 text='研一計畫網站',
                 actions=[
                     PostbackTemplateAction(label='開發過程', text='扎根網站開發過程', data='exp5'),
-                    MessageTemplateAction(label='網站', text='扎根網站'),
-                    URITemplateAction(label='GitHub', uri='https://github.com/wei840222/106-High-School-Website')
+                    MessageTemplateAction(label='影片', text='扎根影片'),
+                    URITemplateAction(label='網站', uri='http://acl.csie.ntut.edu.tw/seniorhigh/index.html')
                 ]
             )
         ]
     )
 )
+
+works1_video_message = TextSendMessage(text='抱歉這個專案沒有影片喔！ QQ')
+
+works2_video_message = VideoSendMessage(
+    original_content_url='https://www.youtube.com/embed/MTnS6NO3fM4',
+    preview_image_url='https://i.ytimg.com/vi/MTnS6NO3fM4/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIZCGAFwAQ==&rs=AOn4CLAisDYYI7xNTJQkLis6NdfEfnYOKg'
+)
+
+works3_video_message = VideoSendMessage(
+    original_content_url='https://www.youtube.com/embed/B3hKuGS1lDE',
+    preview_image_url='https://i.ytimg.com/vi/B3hKuGS1lDE/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIZCGAFwAQ==&rs=AOn4CLCmOe1W_jfs_v75Smu9tPtiiPPrWQ'
+)
+
+works4_video_message = VideoSendMessage(
+    original_content_url='https://www.youtube.com/embed/MJCkf-ytCRo',
+    preview_image_url='https://i.ytimg.com/vi/MJCkf-ytCRo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIZCGAFwAQ==&rs=AOn4CLBzcxJfEXdbiQt1xAIgTXH9AI_CeQ'
+)
+
+works5_video_message = works1_video_message
