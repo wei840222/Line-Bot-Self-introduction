@@ -101,17 +101,17 @@ works = TemplateSendMessage(
 works1_video_message = TextSendMessage(text='抱歉這個專案沒有影片喔！ QQ')
 
 works2_video_message = VideoSendMessage(
-    original_content_url='https://www.youtube.com/embed/MTnS6NO3fM4',
+    original_content_url='http://140.124.181.76/farmrobot.mp4',
     preview_image_url='https://i.ytimg.com/vi/MTnS6NO3fM4/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIZCGAFwAQ==&rs=AOn4CLAisDYYI7xNTJQkLis6NdfEfnYOKg'
 )
 
 works3_video_message = VideoSendMessage(
-    original_content_url='https://www.youtube.com/embed/B3hKuGS1lDE',
+    original_content_url='http://140.124.181.76/8051.mp4',
     preview_image_url='https://i.ytimg.com/vi/B3hKuGS1lDE/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIZCGAFwAQ==&rs=AOn4CLCmOe1W_jfs_v75Smu9tPtiiPPrWQ'
 )
 
 works4_video_message = VideoSendMessage(
-    original_content_url='https://www.youtube.com/embed/MJCkf-ytCRo',
+    original_content_url='http://140.124.181.76/fuzzy.mp4',
     preview_image_url='https://i.ytimg.com/vi/MJCkf-ytCRo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIZCGAFwAQ==&rs=AOn4CLBzcxJfEXdbiQt1xAIgTXH9AI_CeQ'
 )
 
