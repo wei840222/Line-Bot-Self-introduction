@@ -9,12 +9,12 @@ class profileProblem():
         self.pictureUrl = profile.picture_url
         self.statusMessage = profile.status_message
         self.lineBotApi = line_bot_api
-        self.menuDict = {\
-            '名字':'name', '稱呼':'name',\
-            '關於我':'aboutMe', '你好':'aboutMe', '您好':'aboutMe',\
-            '個性':'personality',\
-            '學歷':'education', '畢業':'education',\
-            }
+        self.menuDict = {
+            '名字': 'name', '稱呼': 'name',
+            '關於我': 'aboutMe', '你好': 'aboutMe', '您好': 'aboutMe',
+            '個性': 'personality',
+            '學歷': 'education', '畢業': 'education',
+        }
 
     def isMenuOption(self, msg):
         for key in self.menuDict.keys():
@@ -87,3 +87,31 @@ class profileProblem():
             print(e.status_code)
             print(e.error.message)
             print(e.error.details)
+
+
+def richMenuTest(line_bot_api, user_id):
+    rich_menu_to_create = RichMenu(
+        size=RichMenuBound(
+            width=2500,
+            height=1686
+        ),
+        selected=False,
+        name="nice richmenu",
+        chatBarText="touch me",
+        areas=[
+            RichMenuArea(
+                RichMenuBound(
+                    x=0,
+                    y=0,
+                    width=2500,
+                    height=1686
+                ),
+                URITemplateAction(
+                    uri='line://nv/location'
+                )
+            )
+        ]
+    )
+    rich_menu_id = line_bot_api.create_rich_menu(data=rich_menu_to_create)
+    print(rich_menu_id)
+    line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)

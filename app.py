@@ -48,6 +48,8 @@ def handle_message(event):
     pp = profileProblem(profile, line_bot_api)
     if pp.isMenuOption(msg):
         pp.chooseMenuOption(msg)
+    elif msg == 'richMenuTest':
+        richMenuTest(line_bot_api, profile.user_id)
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='我不了解「' + msg + '」是什麼意思。'))
 
