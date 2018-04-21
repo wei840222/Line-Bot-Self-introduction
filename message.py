@@ -3,7 +3,7 @@ from linebot.models import *
 aboutMe = TemplateSendMessage(
     alt_text='About Me',
     template=ButtonsTemplate(
-        thumbnail_image_url='https://static.xx.fbcdn.net/rsrc.php/v3/y4/r/-PAXP-deijE.gif',
+        thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/10708557_1015515881843332_8373003669342196560_o.jpg?_nc_cat=0&oh=e23ad6031af3f5c1f1dd73bccf83d557&oe=5B6EB2F8',
         title='關於我',
         text='您好，我叫萬俊瑋，點擊下面可以了解更多資訊...',
         actions=[
