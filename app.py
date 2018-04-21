@@ -4,7 +4,7 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
 from msgProcess import *
-import .message
+import message
 
 
 def richMenuTest(line_bot_api, user_id):
