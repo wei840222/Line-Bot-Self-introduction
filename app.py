@@ -80,6 +80,14 @@ def handle_postback(event):
     profile = line_bot_api.get_profile(event.source.user_id)
     if event.postback.data == 'works-intro1':
         message.worksIntro1(line_bot_api, profile.user_id)
+    if event.postback.data == 'works-intro2':
+        message.worksIntro2(line_bot_api, profile.user_id)
+    if event.postback.data == 'works-intro3':
+        message.worksIntro3(line_bot_api, profile.user_id)
+    if event.postback.data == 'works-intro4':
+        message.worksIntro4(line_bot_api, profile.user_id)
+    if event.postback.data == 'works-intro5':
+        message.worksIntro5(line_bot_api, profile.user_id)
 
 
 if __name__ == "__main__":

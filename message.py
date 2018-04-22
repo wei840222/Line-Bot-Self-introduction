@@ -59,7 +59,7 @@ works = TemplateSendMessage(
                 title='田間自走機器人',
                 text='大四專題',
                 actions=[
-                    PostbackTemplateAction(label='簡介', text='田間機器人簡介', data='works-intro2'),
+                    PostbackTemplateAction(label='簡介', data='works-intro2'),
                     URITemplateAction(label='影片', uri='https://youtu.be/MTnS6NO3fM4'),
                     URITemplateAction(label='GitHub', uri='https://github.com/wei840222/Farm-Self-Propelled-Robot')
                 ]
@@ -69,7 +69,7 @@ works = TemplateSendMessage(
                 title='8051俄羅斯方塊',
                 text='大二課程專案',
                 actions=[
-                    PostbackTemplateAction(label='簡介', text='8051簡介', data='works-intro3'),
+                    PostbackTemplateAction(label='簡介', data='works-intro3'),
                     URITemplateAction(label='影片', uri='https://youtu.be/B3hKuGS1lDE'),
                     URITemplateAction(label='GitHub', uri='https://github.com/wei840222/8051-Tetris')
                 ]
@@ -79,7 +79,7 @@ works = TemplateSendMessage(
                 title='Fuzzy倒車入庫圖形介面',
                 text='大三課外專案',
                 actions=[
-                    PostbackTemplateAction(label='簡介', text='倒車入庫簡介', data='works-intro4'),
+                    PostbackTemplateAction(label='簡介', data='works-intro4'),
                     URITemplateAction(label='影片', uri='https://youtu.be/MJCkf-ytCRo'),
                     URITemplateAction(label='GitHub', uri='https://github.com/wei840222/Fuzzy-OpenGL-GUI')
                 ]
@@ -89,7 +89,7 @@ works = TemplateSendMessage(
                 title='106年扎根高中職資訊科學教育計劃網站',
                 text='研一計畫網站',
                 actions=[
-                    PostbackTemplateAction(label='簡介', text='扎根網站簡介', data='works-intro5'),
+                    PostbackTemplateAction(label='簡介', data='works-intro5'),
                     URITemplateAction(label='網站', uri='http://acl.csie.ntut.edu.tw/seniorhigh/index.html'),
                     URITemplateAction(label='GitHub', uri='https://github.com/wei840222/106-High-School-Website')
                 ]
@@ -105,11 +105,43 @@ def worksIntro1(line_bot_api, user_id):
     line_bot_api.push_message(user_id, ImageSendMessage(original_content_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/31065581_1772747192786860_3199231543925185086_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeG9Rk21x2hE_YLI9V_tTyRYMIihs1ssRtxNyHbUGeAFxbZce6cVaEFXElsul2D7WAS4zlO4-D4G0_7S2I7jWD5ddNxErthdkdJfQoQM1fjuJw&oh=1491ea8694b13b391f1c433beeffd8d9&oe=5B5C6ED8', preview_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/31065581_1772747192786860_3199231543925185086_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeG9Rk21x2hE_YLI9V_tTyRYMIihs1ssRtxNyHbUGeAFxbZce6cVaEFXElsul2D7WAS4zlO4-D4G0_7S2I7jWD5ddNxErthdkdJfQoQM1fjuJw&oh=1491ea8694b13b391f1c433beeffd8d9&oe=5B5C6ED8'))
     line_bot_api.push_message(user_id, ImageSendMessage(original_content_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30052413_1772745286120384_8713726014044494444_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeGPy0cqBjLlrY7Rxx-MFTgkSxfW6KMjRFwnKAz8GbVZZebGjXd8SH6EGSOI3ntZI2U6lyPBB58lOLB4Jk7HwfelXq6gitt05aKLz3TDogAuCg&oh=8e125fc97c7d201b2dddf336886cbcb7&oe=5B5F3FB2', preview_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30052413_1772745286120384_8713726014044494444_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeGPy0cqBjLlrY7Rxx-MFTgkSxfW6KMjRFwnKAz8GbVZZebGjXd8SH6EGSOI3ntZI2U6lyPBB58lOLB4Jk7HwfelXq6gitt05aKLz3TDogAuCg&oh=8e125fc97c7d201b2dddf336886cbcb7&oe=5B5F3FB2'))
     line_bot_api.push_message(user_id, TextSendMessage(text='雖然第一次做大型專題,難免有困難,但我發現要與組員有效溝通,不是靠口頭表述,而是藉著圖表整理的實驗結果,更有說服力也能轉達想要表達的意思,並透過 GitHub 管理程式碼,可以更好的掌握進度與協力開發,避免時間拖延。。'))
-    line_bot_api.push_message(user_id, TextSendMessage(text='下面是一些我們在專題製作的成果：'))
-    line_bot_api.push_message(user_id, TextSendMessage(text='專題競賽海報'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='專題競賽海報:'))
     line_bot_api.push_message(user_id, TextSendMessage(text='https://drive.google.com/open?id=1ckI6pIbABZSvs8wmloe2cYNLg8kLM3Pv'))
-    line_bot_api.push_message(user_id, TextSendMessage(text='競賽得獎紀錄'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='競賽得獎紀錄:'))
     line_bot_api.push_message(user_id, ImageSendMessage(original_content_url='https://goo.gl/bwQi94', preview_image_url='https://goo.gl/bwQi94'))
     line_bot_api.push_message(user_id, ImageSendMessage(original_content_url='https://goo.gl/fkW5mM', preview_image_url='https://goo.gl/fkW5mM'))
     line_bot_api.push_message(user_id, ImageSendMessage(original_content_url='https://goo.gl/UPjXx1', preview_image_url='https://goo.gl/UPjXx1'))
-    
+
+def worksIntro2(line_bot_api, user_id):
+    line_bot_api.push_message(user_id, TextSendMessage(text='大四上學期,我就讀生物機電工程的室友參加田間機器人競賽,請我協助機器人開發。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='有了大三專題的經驗,在既有的硬體上,我規劃出易於維護的軟體架構,針對細部的功能進行演算法開發。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='如:控制機器人硬體之 API、維持行走於賽道上的演算法、執行特定動作之函數。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='競賽得獎紀錄:'))
+    line_bot_api.push_message(user_id, ImageSendMessage(original_content_url='https://goo.gl/ByL1hL', preview_image_url='https://goo.gl/ByL1hL'))
+    line_bot_api.push_message(user_id, ImageSendMessage(original_content_url='https://goo.gl/pyhyBW', preview_image_url='https://goo.gl/pyhyBW'))
+
+def worksIntro3(line_bot_api, user_id):
+    line_bot_api.push_message(user_id, TextSendMessage(text='大二上學期,我修習一門微處理機應用的課程，所製作的專題。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='當時我在網路上看到一支影片，覺得很有趣，於是決定開發這個小專題。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='https://youtu.be/zpVccKRZgJA'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='這是我第一個，有別於以往，開始有在規劃架構的程式。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='那時也沒有學過軟體架構，我就照著我對這個專題的需求規劃了下圖的架構。'))
+    line_bot_api.push_message(user_id, ImageSendMessage(original_content_url='https://goo.gl/AZ4yf5', preview_image_url='https://goo.gl/AZ4yf5'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='系統主要由控制硬體的函數，還有進行遊戲的函數所構成，由於是C語言，就沒有特別包成物件了。'))
+
+def worksIntro4(line_bot_api, user_id):
+    line_bot_api.push_message(user_id, TextSendMessage(text='大三上學期,我的同學專題製作Fuzzy倒車入庫的模擬，需要一個圖形界面，所以我就幫他們做了。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='代價是請我吃燒肉XD。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='剛好那學期，有修了一門遊戲程式設計的課。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='那門課教我們用OpenGL去實做一些畫面繪製的效果。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='https://github.com/wei840222/My-OpenGL-Game-Engine'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='於是呢，我就現學現賣的做的這個展示介面，還跟跟使用者互動。'))
+
+def worksIntro5(line_bot_api, user_id):
+    line_bot_api.push_message(user_id, TextSendMessage(text='剛近來研究所時，我接了一個教育部的計畫。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='主要內容是教高中生寫程式做專題。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='由於計畫需要一個網站，去公告事情。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='但是我不會做網站阿QQ'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='於是呢，我就去Udemy上買了一門做網頁的課，並去搜尋一些如何架站的文章。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='一邊看影片一邊做出這個網站，然後又覺的實驗室的網站伺服器太慢。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='就又把所有實驗室網頁一起搬到新主機上XD。'))
