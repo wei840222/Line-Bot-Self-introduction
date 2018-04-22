@@ -93,7 +93,7 @@ def handle_postback(event):
         message.worksIntro5(line_bot_api, profile.user_id)
     # app
     if event.postback.data == 'time':
-        now = datetime.utcnow()
+        utcnow = datetime.utcnow()
         tpe = pytz.timezone('Asia/Taipei')
         tpeTime = tpe.fromutc(utcnow)
         time = str(now[0]) + '年 ' + str(tpeTime[1]) + '月 ' + str(tpeTime[2]) + '日' + str(tpeTime[3]) + ' 時 ' + str(tpeTime[4]) + '分'
