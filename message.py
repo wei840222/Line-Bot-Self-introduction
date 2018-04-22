@@ -49,8 +49,8 @@ works = TemplateSendMessage(
                 title='智慧型電動助力單車暨行車資訊顯示系統之實現',
                 text='大三專題',
                 actions=[
-                    PostbackTemplateAction(label='開發過程', text='助力車開發過程', data='exp1'),
-                    URITemplateAction(label='GitHub', uri='https://github.com/wei840222/NCYU-EE-Autobike-2015'),
+                    PostbackTemplateAction(label='簡介', text='助力車簡介', data='exp1'),
+                    URITemplateAction(label='企劃書', uri='https://drive.google.com/open?id=1XTiU8S3ngquCqHZ4q1sZBdrfIYaJlws8'),
                     URITemplateAction(label='GitHub', uri='https://github.com/wei840222/NCYU-EE-Autobike-2015')
                 ]
             ),
@@ -59,8 +59,8 @@ works = TemplateSendMessage(
                 title='田間自走機器人',
                 text='大四專題',
                 actions=[
-                    PostbackTemplateAction(label='開發過程', text='田間機器人開發過程', data='exp2'),
-                    MessageTemplateAction(label='影片', text='田間機器人影片'),
+                    PostbackTemplateAction(label='簡介', text='田間機器人簡介', data='exp2'),
+                    URITemplateAction(label='影片', uri='https://youtu.be/MTnS6NO3fM4'),
                     URITemplateAction(label='GitHub', uri='https://github.com/wei840222/Farm-Self-Propelled-Robot')
                 ]
             ),
@@ -69,9 +69,9 @@ works = TemplateSendMessage(
                 title='8051俄羅斯方塊',
                 text='大二課程專案',
                 actions=[
-                    PostbackTemplateAction(label='開發過程', text='8051開發過程', data='exp3'),
-                    MessageTemplateAction(label='影片', text='8051影片'),
-                    URITemplateAction(label='GitHub', uri='https://www.youtube.com/watch?v=B3hKuGS1lDE')
+                    PostbackTemplateAction(label='簡介', text='8051簡介', data='exp3'),
+                    URITemplateAction(label='影片', uri='https://youtu.be/B3hKuGS1lDE'),
+                    URITemplateAction(label='GitHub', uri='https://github.com/wei840222/8051-Tetris')
                 ]
             ),
             CarouselColumn(
@@ -79,8 +79,8 @@ works = TemplateSendMessage(
                 title='Fuzzy倒車入庫圖形介面',
                 text='大三課外專案',
                 actions=[
-                    PostbackTemplateAction(label='開發過程', text='倒車入庫開發過程', data='exp4'),
-                    MessageTemplateAction(label='影片', text='倒車入庫影片'),
+                    PostbackTemplateAction(label='簡介', text='倒車入庫簡介', data='exp4'),
+                    URITemplateAction(label='影片', uri='https://youtu.be/MJCkf-ytCRo'),
                     URITemplateAction(label='GitHub', uri='https://github.com/wei840222/Fuzzy-OpenGL-GUI')
                 ]
             ),
@@ -89,21 +89,11 @@ works = TemplateSendMessage(
                 title='106年扎根高中職資訊科學教育計劃網站',
                 text='研一計畫網站',
                 actions=[
-                    PostbackTemplateAction(label='開發過程', text='扎根網站開發過程', data='exp5'),
-                    MessageTemplateAction(label='影片', text='扎根影片'),
-                    URITemplateAction(label='網站', uri='http://acl.csie.ntut.edu.tw/seniorhigh/index.html')
+                    PostbackTemplateAction(label='簡介', text='扎根網站簡介', data='exp5'),
+                    URITemplateAction(label='網站', uri='http://acl.csie.ntut.edu.tw/seniorhigh/index.html'),
+                    URITemplateAction(label='GitHub', uri='https://github.com/wei840222/106-High-School-Website')
                 ]
             )
         ]
     )
 )
-
-works1_video_message = TextSendMessage(text='抱歉這個專案沒有影片喔！ QQ')
-
-works2_video_message = TextSendMessage(text='https://youtu.be/MTnS6NO3fM4')
-
-works3_video_message = TextSendMessage(text='https://youtu.be/B3hKuGS1lDE')
-
-works4_video_message = TextSendMessage(text='https://youtu.be/MJCkf-ytCRo')
-
-works5_video_message = works1_video_message

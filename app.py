@@ -53,8 +53,7 @@ def handle_message(event):
         '興趣': message.interesting, '愛好': message.interesting,
         '學歷': message.education, '畢業': message.education,
         '專長': message.expertise, '程式': message.expertise, '會什麼': message.expertise,
-        '作品': message.works, '專題': message.works, '專案': message.works,
-        '助力車影片': message.works1_video_message, '田間機器人影片': message.works2_video_message, '8051影片': message.works3_video_message, '倒車入庫影片': message.works4_video_message, '扎根影片': message.works5_video_message, 
+        '作品': message.works, '專題': message.works, '專案': message.works 
     }
 
     # search key word in msgDict
