@@ -155,7 +155,7 @@ tools = TemplateSendMessage(
         actions=[
             MessageTemplateAction(label='時間', text='時間'),
             MessageTemplateAction(label='天氣', text='天氣'),
-            PostbackTemplateAction(label='蘋果新聞', data='news')
+            MessageTemplateAction(label='新聞', text='新聞')
         ]
     )
 )
