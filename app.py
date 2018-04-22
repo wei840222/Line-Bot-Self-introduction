@@ -117,20 +117,16 @@ def handle_message(event):
 
     # Apple News
     if '新聞' in event.message.text:
-        target_url = 'http://www.appledaily.com.tw/realtimenews/section/new/'
-        head = 'http://www.appledaily.com.tw'
-        print('Start parsing appleNews....')
+        url = 'http://www.appledaily.com.tw/realtimenews/section/new/'
         rs = requests.session()
-        res = rs.get(target_url, verify=False)
+        res = rs.get(url, verify=False)
         soup = BeautifulSoup(res.text, 'html.parser')
         content = ''
         for index, data in enumerate(soup.select('.rtddt a'), 0):
             if index == 15:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
-            if head in data['href']:
-                link = data['href']
             else:
-                link = head + data['href']
+                link = data['href']
             content += '{}\n\n'.format(link)
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
