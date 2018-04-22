@@ -53,7 +53,8 @@ def handle_message(event):
         '興趣': message.interesting, '愛好': message.interesting,
         '學歷': message.education, '畢業': message.education,
         '專長': message.expertise, '程式': message.expertise, '會什麼': message.expertise,
-        '作品': message.works, '專題': message.works, '專案': message.works
+        '作品': message.works, '專題': message.works, '專案': message.works,
+        '小工具': message.tools, '工具': message.tools
     }
 
     # search key word in msgDict
@@ -88,6 +89,11 @@ def handle_postback(event):
         message.worksIntro4(line_bot_api, profile.user_id)
     if event.postback.data == 'works-intro5':
         message.worksIntro5(line_bot_api, profile.user_id)
+    # app
+    if event.postback.data == 'time':
+        date = event.postback.params['date']
+        time = event.postback.params['datetime']
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=(date + time)))
 
 
 if __name__ == "__main__":
