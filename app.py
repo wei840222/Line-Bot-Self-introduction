@@ -94,11 +94,11 @@ def handle_postback(event):
         message.worksIntro5(line_bot_api, profile.user_id)
     # app
     if event.postback.data == 'time':
-        utcnow = datetime.utcnow()
         tpe = pytz.timezone('Asia/Taipei')
-        tpeTime = tpe.fromutc(utcnow)
-        time = str(tpeTime[0]) + '年 ' + str(tpeTime[1]) + '月 ' + str(tpeTime[2]) + '日' + str(tpeTime[3]) + ' 時 ' + str(tpeTime[4]) + '分'
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=time))
+        tpeTime = str(tpe.fromutc(datetime.utcnow()))
+        date = tpeTime.split(' ')[0]
+        time = tpeTime.split(' ')[1].split('.')[0]
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=('日期：' + date + ' 時間：' + time)))
 
 
 if __name__ == "__main__":
