@@ -89,12 +89,12 @@ def handle_message(event):
         # find the location users ask in the string of user input
         location = None
         for key in locationDict.keys():
-            if key in event.message.text:
+            if key in event.message.text.replace('臺', '台'):
                 location = key
         if location is None:
             line_bot_api.push_message(profile.user_id, TextSendMessage(text='請輸入XX市/縣天氣，查詢天氣。'))
             return None
-        
+     
         # get data from gov weather restful api
         url = 'http://opendata.cwb.gov.tw/opendataapi?dataid=' + locationDict[location] + '&authorizationkey=' + WEATHER_API_KEY
         data = requests.get(url).text
