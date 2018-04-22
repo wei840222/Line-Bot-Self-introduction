@@ -66,8 +66,6 @@ def handle_message(event):
         if key in event.message.text:
             line_bot_api.reply_message(event.reply_token, msgDict[key])
             return None
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(
-            text='我不了解「' + event.message.text + '」是什麼意思。'))
 
     # time app
     if event.message.text.find('時間') > 0:
@@ -86,7 +84,7 @@ def handle_message(event):
         elif event.message.text.find('縣') > 0:
             locationIndex = event.message.text.find('縣')
         else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='請直接輸入XX市/縣天氣，查詢天氣。'))
+            line_bot_api.push_message(profile.user_id, TextSendMessage(text='請直接輸入XX市/縣天氣，查詢天氣。'))
             return None
 
         locationIndexStart = locationIndex - 2
@@ -112,6 +110,9 @@ def handle_message(event):
         except:
             line_bot_api.reply_message(event.reply_token, TextMessage(
                 text="yo~台灣沒這個地方～\n或是請愛用繁體「臺」ex「臺南市」"))
+    
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(
+            text='我不了解「' + event.message.text + '」是什麼意思。'))
 
 
 @handler.add(PostbackEvent)
