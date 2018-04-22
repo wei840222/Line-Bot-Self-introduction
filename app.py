@@ -98,7 +98,7 @@ def handle_postback(event):
         tpeTime = str(tpe.fromutc(datetime.utcnow()))
         date = tpeTime.split(' ')[0].split('-')
         time = tpeTime.split(' ')[1].split('.')[0].split(':')
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=('台北時間： ' +date[0] + '年' + date[1] + '月' + date[2] + '日 ' + time[0] + '時' + time[1] + '分')))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=('台北時間：' +date[0] + '年' + date[1] + '月' + date[2] + '日' + time[0] + '時' + time[1] + '分')))
 
 
 if __name__ == "__main__":
