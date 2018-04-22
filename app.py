@@ -48,12 +48,12 @@ def handle_message(event):
     msgDict = {
         '你好': message.hi, '您好': message.hi,
         '名字': message.name, '稱呼': message.name,
-        '關於我': message.aboutMe, 
+        '關於我': message.aboutMe,
         '個性': message.personality,
         '興趣': message.interesting, '愛好': message.interesting,
         '學歷': message.education, '畢業': message.education,
         '專長': message.expertise, '程式': message.expertise, '會什麼': message.expertise,
-        '作品': message.works, '專題': message.works, '專案': message.works 
+        '作品': message.works, '專題': message.works, '專案': message.works
     }
 
     # search key word in msgDict
@@ -61,7 +61,7 @@ def handle_message(event):
         if key in event.message.text:
             line_bot_api.reply_message(event.reply_token, msgDict[key])
             return None
-    
+
     # for test
     if event.message.text == 'test':
         try:
@@ -71,8 +71,14 @@ def handle_message(event):
             print(e.error.message)
             print(e.error.details)
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='我不了解「' + event.message.text + '」是什麼意思。'))
-    
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(
+            text='我不了解「' + event.message.text + '」是什麼意思。'))
+
+
+@handler.add(PostbackEvent)
+def handle_postback(event):
+    if event.postback.data == 'works-intro1':
+        works-intro1(line_bot_api, profile.user_id)
 
 
 if __name__ == "__main__":
