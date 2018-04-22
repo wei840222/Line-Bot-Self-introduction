@@ -50,7 +50,7 @@ works = TemplateSendMessage(
                 text='大三專題',
                 actions=[
                     PostbackTemplateAction(label='開發過程', text='助力車開發過程', data='exp1'),
-                    MessageTemplateAction(label='影片', text='助力車影片'),
+                    URITemplateAction(label='GitHub', uri='https://github.com/wei840222/NCYU-EE-Autobike-2015'),
                     URITemplateAction(label='GitHub', uri='https://github.com/wei840222/NCYU-EE-Autobike-2015')
                 ]
             ),
