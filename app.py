@@ -77,6 +77,7 @@ def handle_message(event):
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
+    profile = line_bot_api.get_profile(event.source.user_id)
     if event.postback.data == 'works-intro1':
         message.worksIntro1(line_bot_api, profile.user_id)
 
