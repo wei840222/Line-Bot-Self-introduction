@@ -133,6 +133,10 @@ def handle_message(event):
     line_bot_api.push_message(profile.user_id, TextSendMessage(
         text='我不了解「' + event.message.text + '」是什麼意思。'))
 
+@handler.add(MessageEvent, message=StickerMessage)
+def handle_sticker_message(event):
+    # echo sticker
+    line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id=event.message.package_id, sticker_id=event.message.sticker_id))
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
@@ -142,18 +146,6 @@ def handle_postback(event):
     if event.postback.data in msgListDict.keys():
         for msg in msgListDict[event.postback.data]:
             line_bot_api.push_message(profile.user_id, msg)
-
-
-@handler.add(MessageEvent, message=StickerMessage)
-def handle_sticker_message(event):
-    # echo sticker
-    line_bot_api.reply_message(
-        event.reply_token,
-        StickerSendMessage(
-            package_id=event.message.package_id,
-            sticker_id=event.message.sticker_id)
-    )
-
 
 if __name__ == "__main__":
     app.run()
