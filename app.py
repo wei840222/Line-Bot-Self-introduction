@@ -127,25 +127,19 @@ def handle_message(event):
             else:
                 link = data['href']
                 line_bot_api.push_message(profile.user_id, TextSendMessage(text=link))
-
+    
+    # can't find any msg to reply
     line_bot_api.push_message(profile.user_id, TextSendMessage(
         text='我不了解「' + event.message.text + '」是什麼意思。'))
 
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
+    msgStackDict = {'works-intro1':message.worksIntro1, 'works-intro2':message.worksIntro2, 'works-intro3':message.worksIntro3, 'works-intro4':message.worksIntro4, 'works-intro5':message.worksIntro5}
     profile = line_bot_api.get_profile(event.source.user_id)
-    if event.postback.data == 'works-intro1':
-        message.worksIntro1(line_bot_api, profile.user_id)
-    if event.postback.data == 'works-intro2':
-        message.worksIntro2(line_bot_api, profile.user_id)
-    if event.postback.data == 'works-intro3':
-        message.worksIntro3(line_bot_api, profile.user_id)
-    if event.postback.data == 'works-intro4':
-        message.worksIntro4(line_bot_api, profile.user_id)
-    if event.postback.data == 'works-intro5':
-        message.worksIntro5(line_bot_api, profile.user_id)
-
+    if event.postback.data in msgStackDict.keys():
+        for msg in msgStackDict[event.postback.data]:
+            line_bot_api.push_message(profile.user_id, msg)
 
 if __name__ == "__main__":
     app.run()
