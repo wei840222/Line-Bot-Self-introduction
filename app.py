@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
 import pytz
+import requests
 import simplejson as json
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
@@ -68,7 +69,7 @@ def handle_message(event):
             return None
 
     # time app
-    if event.message.text.find('時間') > 0:
+    if event.message.text.find('時間') >= 0:
         tpe = pytz.timezone('Asia/Taipei')
         tpeTime = str(tpe.fromutc(datetime.utcnow()))
         date = tpeTime.split(' ')[0].split('-')
