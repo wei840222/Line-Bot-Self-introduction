@@ -135,7 +135,7 @@ def worksIntro4(line_bot_api, user_id):
     line_bot_api.push_message(user_id, TextSendMessage(text='剛好那學期，有修了一門遊戲程式設計的課。'))
     line_bot_api.push_message(user_id, TextSendMessage(text='那門課教我們用OpenGL去實做一些畫面繪製的效果。'))
     line_bot_api.push_message(user_id, TextSendMessage(text='https://github.com/wei840222/My-OpenGL-Game-Engine'))
-    line_bot_api.push_message(user_id, TextSendMessage(text='於是呢，我就現學現賣的做的這個展示介面，還跟跟使用者互動。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='於是呢，我就現學現賣的做的這個展示介面，還能跟使用者互動。'))
 
 def worksIntro5(line_bot_api, user_id):
     line_bot_api.push_message(user_id, TextSendMessage(text='剛近來研究所時，我接了一個教育部的計畫。'))
