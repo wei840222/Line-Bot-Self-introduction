@@ -153,8 +153,8 @@ tools = TemplateSendMessage(
         title='小工具',
         text='對於這次的聊天機器人開發，我做了幾個小工具試試...',
         actions=[
-            PostbackTemplateAction(label='時間', data='time'),
-            PostbackTemplateAction(label='天氣', data='weather'),
+            MessageTemplateAction(label='時間', text='時間'),
+            MessageTemplateAction(label='天氣', text='天氣'),
             PostbackTemplateAction(label='蘋果新聞', data='news')
         ]
     )
