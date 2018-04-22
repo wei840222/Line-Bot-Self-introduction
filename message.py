@@ -98,7 +98,7 @@ works = TemplateSendMessage(
     )
 )
 
-def works-intro1(line_bot_api, user_id):
+def worksIntro1(line_bot_api, user_id):
     line_bot_api.push_message(user_id, TextSendMessage(text='大三修習專題課程時,我與一位同學隨我們系主任進行:「智慧型電動單車助力暨資訊顯示系統」開發。'))
     line_bot_api.push_message(user_id, TextSendMessage(text='在專題進行的過程中,我負責硬體驅動撰寫,如:加速計、藍芽模組與馬達輸出。'))
     line_bot_api.push_message(user_id, ImageSendMessage(original_content_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30420598_1772746002786979_2578228845209619962_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEhIPUf7C4U3Ddl1U9aa8bhIXnm7ACoHp6_0wAjDI8G3Y2WF-iW-zK9eQi8gnPotzqNmv44zL53KXEp-bD2zZtSxXrcD40QeZQqCxH4NEAXBQ&oh=abf908c57635184d8acec348600bbf09&oe=5B52CB3B', preview_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30420598_1772746002786979_2578228845209619962_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEhIPUf7C4U3Ddl1U9aa8bhIXnm7ACoHp6_0wAjDI8G3Y2WF-iW-zK9eQi8gnPotzqNmv44zL53KXEp-bD2zZtSxXrcD40QeZQqCxH4NEAXBQ&oh=abf908c57635184d8acec348600bbf09&oe=5B52CB3B'))
