@@ -141,7 +141,7 @@ def handle_sticker_message(event):
         line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id=event.message.package_id, sticker_id=event.message.sticker_id))
         print(event.message.package_id, event.message.sticker_id)
     except LineBotApiError as e:
-        line_bot_api.push_message(profile.user_id, TextSendMessage(text='我沒有這個貼圖QQ')
+        line_bot_api.push_message(profile.user_id, TextSendMessage(text='我沒有這個貼圖QQ'))
         line_bot_api.push_message(profile.user_id, StickerSendMessage(package_id=event.message.package_id, sticker_id=event.message.sticker_id))
 
 
