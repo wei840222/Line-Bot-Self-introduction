@@ -121,14 +121,13 @@ def handle_message(event):
         rs = requests.session()
         res = rs.get(url, verify=False)
         soup = BeautifulSoup(res.text, 'html.parser')
-        content = ''
         for index, data in enumerate(soup.select('.rtddt a'), 0):
-            if index == 15:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
+            if index == 5:
+                return None
             else:
                 link = data['href']
-            content += '{}\n\n'.format(link)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
+                content = '{}\n\n'.format(link)
+                line_bot_api.push_message(profile.user_id, TextSendMessage(text=content))
 
     line_bot_api.push_message(profile.user_id, TextSendMessage(
         text='我不了解「' + event.message.text + '」是什麼意思。'))
