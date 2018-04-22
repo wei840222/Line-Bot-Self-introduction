@@ -94,7 +94,7 @@ def handle_message(event):
                 location = key
         if location is None:
             line_bot_api.push_message(
-                profile.user_id, TextSendMessage(text='請輸入XX市/縣天氣，查詢天氣。'))
+                profile.user_id, TextSendMessage(text='請輸入XX市/縣天氣，查詢天氣。\nex:台北市天氣'))
             return None
 
         # get data from gov weather restful api
