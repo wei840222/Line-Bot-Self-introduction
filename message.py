@@ -145,3 +145,17 @@ def worksIntro5(line_bot_api, user_id):
     line_bot_api.push_message(user_id, TextSendMessage(text='於是呢，我就去Udemy上買了一門做網頁的課，並去搜尋一些如何架站的文章。'))
     line_bot_api.push_message(user_id, TextSendMessage(text='一邊看影片一邊做出這個網站，然後又覺的實驗室的網站伺服器太慢。'))
     line_bot_api.push_message(user_id, TextSendMessage(text='就又把所有實驗室網頁一起搬到新主機上XD。'))
+
+tools = TemplateSendMessage(
+    alt_text='Tools',
+    template=ButtonsTemplate(
+        thumbnail_image_url='https://goo.gl/RnbH5y',
+        title='小工具',
+        text='對於這次的聊天機器人開發，我想我講在多也不如直接做幾個小工具試試...',
+        actions=[
+            PostbackTemplateAction(label='時間', data='time'),
+            PostbackTemplateAction(label='天氣', data='weather'),
+            PostbackTemplateAction(label='蘋果新聞', data='news')
+        ]
+    )
+)
