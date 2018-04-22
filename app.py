@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 line_bot_api = LineBotApi(os.environ.get('ACCESS_TOKEN'))
 handler = WebhookHandler(os.environ.get('SECRET'))
-WEATHERAPIKEY = os.environ.get('WEATHER_API_KEY')
+WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -62,7 +62,7 @@ def handle_message(event):
         '聯繫方式': message.contact, '郵件': message.contact, 'mail': message.contact
     }
 
-    # search key word in msgDict
+    # search key word in msgDict and reply
     for key in msgDict.keys():
         if key in event.message.text:
             line_bot_api.reply_message(event.reply_token, msgDict[key])
@@ -76,6 +76,7 @@ def handle_message(event):
         time = tpeTime.split(' ')[1].split('.')[0].split(':')
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=(
             '台北時間：' + date[0] + '年' + date[1] + '月' + date[2] + '日' + time[0] + '時' + time[1] + '分')))
+        return None
 
     # weather app
     if('天氣' in event.message.text):
@@ -91,29 +92,10 @@ def handle_message(event):
         locationIndexStart = locationIndex - 2
         locationIndexEnd = locationIndex + 1
         location = event.message.text[locationIndexStart:locationIndexEnd]
-        print(location)
-        url = "http://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?locationName=" + \
-            location+"&elementName=Wx"
-        header = {"Authorization": WEATHERAPIKEY}
-        origin = requests.get(url, headers=header)
-        body = json.loads(origin.content)
-        # Determind which prediction of time interval for the weather of the location.
-        try:
-            timeIntervalPredict = body['records']['location'][0]['weatherElement'][0]['time']
-            for possibleTime in timeIntervalPredict:
-                # type of time info: string -> datetime
-                timeInterval = datetime.strptime(
-                    possibleTime['startTime'], "%Y-%m-%d %H:%M:%S")
-                if(datetime > timeInterval):
-                    discription = possibleTime['parameter']['paramterName']
-            reply = location + '的天氣為' + discription
-            line_bot_api.reply_message(
-                event.reply_token, TextSendMessage(text=reply))
-            return None
-        except:
-            line_bot_api.reply_message(event.reply_token, TextMessage(
-                text="yo~台灣沒這個地方～\n或是請愛用繁體「臺」ex「臺南市」"))
-            return None
+        url = 'http://opendata.cwb.gov.tw/opendataapi?dataid=F-C0032-009&authorizationkey=' + WEATHER_API_KEY
+        origin = requests.get(url)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=origin))
+        return None
     
     line_bot_api.push_message(profile.user_id, TextSendMessage(text='我不了解「' + event.message.text + '」是什麼意思。'))
 
