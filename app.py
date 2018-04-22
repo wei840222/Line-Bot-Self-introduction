@@ -79,23 +79,30 @@ def handle_message(event):
         return None
 
     # weather app
+    locationDict = {
+        '台北市':'F-C0032-009', '新北市':'F-C0032-010', '基隆市':'F-C0032-011', '花蓮縣':'F-C0032-012', '宜蘭縣':'F-C0032-013', '金門縣':'F-C0032-014', '澎湖縣':'F-C0032-015',
+        '台南市':'F-C0032-016', '高雄市':'F-C0032-017', '嘉義縣':'F-C0032-018', '嘉義市':'F-C0032-019', '苗栗縣':'F-C0032-020', '台中市':'F-C0032-021', '桃園市':'F-C0032-022',
+        '新竹縣':'F-C0032-023', '新竹市':'F-C0032-024', '屏東縣':'F-C0032-025', '南投縣':'F-C0032-026', '台東縣':'F-C0032-027', '彰化縣':'F-C0032-028', '雲林縣':'F-C0032-029',
+        '連江縣':'F-C0032-030'
+    }
     if('天氣' in event.message.text):
         # find the location users ask in the string of user input
-        if event.message.text.find('市') > 0:
-            locationIndex = event.message.text.find('市')
-        elif event.message.text.find('縣') > 0:
-            locationIndex = event.message.text.find('縣')
-        else:
+        location = None
+        for key in locationDict.keys():
+            if key in event.message.text:
+                location = key
+        if location is None:
             line_bot_api.push_message(profile.user_id, TextSendMessage(text='請輸入XX市/縣天氣，查詢天氣。'))
             return None
 
-        locationIndexStart = locationIndex - 2
-        locationIndexEnd = locationIndex + 1
-        location = event.message.text[locationIndexStart:locationIndexEnd]
-        url = 'http://opendata.cwb.gov.tw/opendataapi?dataid=F-C0032-009&authorizationkey=' + WEATHER_API_KEY
+        url = 'http://opendata.cwb.gov.tw/opendataapi?dataid=' + locationDict[location] + '&authorizationkey=' + WEATHER_API_KEY
         data = requests.get(url).text
         weatherComment = data.split('<parameterValue>')[1].split('</parameterValue>')[0]
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=weatherComment))
+        weatherToday = data.split('<parameterValue>')[1].split('</parameterValue>')[0]
+        weatherTomorrow = data.split('<parameterValue>')[1].split('</parameterValue>')[0]
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=location + weatherComment))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=weatherToday))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=weatherTomorrow))
         return None
     
     line_bot_api.push_message(profile.user_id, TextSendMessage(text='我不了解「' + event.message.text + '」是什麼意思。'))
