@@ -91,6 +91,7 @@ def handle_message(event):
         locationIndexStart = locationIndex - 2
         locationIndexEnd = locationIndex + 1
         location = event.message.text[locationIndexStart:locationIndexEnd]
+        print(location)
         url = "http://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?locationName=" + \
             location+"&elementName=Wx"
         header = {"Authorization": WEATHERAPIKEY}
@@ -108,12 +109,13 @@ def handle_message(event):
             reply = location + '的天氣為' + discription
             line_bot_api.reply_message(
                 event.reply_token, TextSendMessage(text=reply))
+            return None
         except:
             line_bot_api.reply_message(event.reply_token, TextMessage(
                 text="yo~台灣沒這個地方～\n或是請愛用繁體「臺」ex「臺南市」"))
+            return None
     
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(
-            text='我不了解「' + event.message.text + '」是什麼意思。'))
+    line_bot_api.push_message(profile.user_id, TextSendMessage(text='我不了解「' + event.message.text + '」是什麼意思。'))
 
 
 @handler.add(PostbackEvent)
