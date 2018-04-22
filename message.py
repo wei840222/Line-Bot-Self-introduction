@@ -49,7 +49,7 @@ works = TemplateSendMessage(
                 title='智慧型電動助力單車暨行車資訊顯示系統之實現',
                 text='大三專題',
                 actions=[
-                    PostbackTemplateAction(label='簡介', text='助力車簡介', data='works-intro1'),
+                    PostbackTemplateAction(label='簡介', data='works-intro1'),
                     URITemplateAction(label='企劃書', uri='https://drive.google.com/open?id=1XTiU8S3ngquCqHZ4q1sZBdrfIYaJlws8'),
                     URITemplateAction(label='GitHub', uri='https://github.com/wei840222/NCYU-EE-Autobike-2015')
                 ]
@@ -105,7 +105,7 @@ def worksIntro1(line_bot_api, user_id):
     line_bot_api.push_message(user_id, ImageSendMessage(original_content_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/31065581_1772747192786860_3199231543925185086_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeG9Rk21x2hE_YLI9V_tTyRYMIihs1ssRtxNyHbUGeAFxbZce6cVaEFXElsul2D7WAS4zlO4-D4G0_7S2I7jWD5ddNxErthdkdJfQoQM1fjuJw&oh=1491ea8694b13b391f1c433beeffd8d9&oe=5B5C6ED8', preview_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/31065581_1772747192786860_3199231543925185086_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeG9Rk21x2hE_YLI9V_tTyRYMIihs1ssRtxNyHbUGeAFxbZce6cVaEFXElsul2D7WAS4zlO4-D4G0_7S2I7jWD5ddNxErthdkdJfQoQM1fjuJw&oh=1491ea8694b13b391f1c433beeffd8d9&oe=5B5C6ED8'))
     line_bot_api.push_message(user_id, ImageSendMessage(original_content_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30052413_1772745286120384_8713726014044494444_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeGPy0cqBjLlrY7Rxx-MFTgkSxfW6KMjRFwnKAz8GbVZZebGjXd8SH6EGSOI3ntZI2U6lyPBB58lOLB4Jk7HwfelXq6gitt05aKLz3TDogAuCg&oh=8e125fc97c7d201b2dddf336886cbcb7&oe=5B5F3FB2', preview_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30052413_1772745286120384_8713726014044494444_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeGPy0cqBjLlrY7Rxx-MFTgkSxfW6KMjRFwnKAz8GbVZZebGjXd8SH6EGSOI3ntZI2U6lyPBB58lOLB4Jk7HwfelXq6gitt05aKLz3TDogAuCg&oh=8e125fc97c7d201b2dddf336886cbcb7&oe=5B5F3FB2'))
     line_bot_api.push_message(user_id, TextSendMessage(text='雖然第一次做大型專題,難免有困難,但我發現要與組員有效溝通,不是靠口頭表述,而是藉著圖表整理的實驗結果,更有說服力也能轉達想要表達的意思,並透過 GitHub 管理程式碼,可以更好的掌握進度與協力開發,避免時間拖延。。'))
-    line_bot_api.push_message(user_id, TextSendMessage(text='下面是一些我們在專題製作的成果：。'))
+    line_bot_api.push_message(user_id, TextSendMessage(text='下面是一些我們在專題製作的成果：'))
     line_bot_api.push_message(user_id, TextSendMessage(text='專題競賽海報'))
     line_bot_api.push_message(user_id, TextSendMessage(text='https://drive.google.com/open?id=1ckI6pIbABZSvs8wmloe2cYNLg8kLM3Pv'))
     line_bot_api.push_message(user_id, TextSendMessage(text='競賽得獎紀錄'))
