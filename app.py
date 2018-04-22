@@ -94,15 +94,16 @@ def handle_message(event):
         if location is None:
             line_bot_api.push_message(profile.user_id, TextSendMessage(text='請輸入XX市/縣天氣，查詢天氣。'))
             return None
-
+        
+        # get data from gov weather restful api
         url = 'http://opendata.cwb.gov.tw/opendataapi?dataid=' + locationDict[location] + '&authorizationkey=' + WEATHER_API_KEY
         data = requests.get(url).text
         weatherComment = data.split('<parameterValue>')[1].split('</parameterValue>')[0]
         weatherToday = data.split('<parameterValue>')[1].split('</parameterValue>')[0]
         weatherTomorrow = data.split('<parameterValue>')[1].split('</parameterValue>')[0]
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=location + weatherComment))
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=weatherToday))
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=weatherTomorrow))
+        line_bot_api.push_message(profile.user_id, TextSendMessage(text=location + weatherComment))
+        line_bot_api.push_message(profile.user_id, TextSendMessage(text=weatherToday))
+        line_bot_api.push_message(profile.user_id, TextSendMessage(text=weatherTomorrow))
         return None
     
     line_bot_api.push_message(profile.user_id, TextSendMessage(text='我不了解「' + event.message.text + '」是什麼意思。'))
