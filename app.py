@@ -93,9 +93,8 @@ def handle_postback(event):
     # app
     if event.postback.data == 'time':
         now = time.localtime()
-        date = str(now[0]) + '年 ' + str(now[1]) + '月 ' + str(now[2]) + '日'
-        time = str(now[3]) + ' 時 ' + str(now[4]) + '分'
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=(date + time)))
+        dateAndTime = str(now[0]) + '年 ' + str(now[1]) + '月 ' + str(now[2]) + '日' + str(now[3]) + ' 時 ' + str(now[4]) + '分'
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=dateAndTime))
 
 
 if __name__ == "__main__":
