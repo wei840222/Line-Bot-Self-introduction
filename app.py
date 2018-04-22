@@ -93,9 +93,8 @@ def handle_message(event):
         locationIndexEnd = locationIndex + 1
         location = event.message.text[locationIndexStart:locationIndexEnd]
         url = 'http://opendata.cwb.gov.tw/opendataapi?dataid=F-C0032-009&authorizationkey=' + WEATHER_API_KEY
-        origin = requests.get(url)
-        print(origin)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='get xml ok'))
+        data = requests.get(url).content
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=data))
         return None
     
     line_bot_api.push_message(profile.user_id, TextSendMessage(text='我不了解「' + event.message.text + '」是什麼意思。'))
