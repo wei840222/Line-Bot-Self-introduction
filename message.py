@@ -151,7 +151,7 @@ tools = TemplateSendMessage(
     template=ButtonsTemplate(
         thumbnail_image_url='https://goo.gl/RnbH5y',
         title='小工具',
-        text='對於這次的聊天機器人開發，我想我講在多也不如直接做幾個小工具試試...',
+        text='對於這次的聊天機器人開發，我做了幾個小工具試試...',
         actions=[
             PostbackTemplateAction(label='時間', data='time'),
             PostbackTemplateAction(label='天氣', data='weather'),
