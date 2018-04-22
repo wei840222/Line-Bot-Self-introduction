@@ -135,14 +135,13 @@ def handle_message(event):
 
 @handler.add(MessageEvent, message=StickerMessage)
 def handle_sticker_message(event):
-    profile = line_bot_api.get_profile(event.source.user_id)
     # echo sticker
     try:
         line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id=event.message.package_id, sticker_id=event.message.sticker_id))
         print(event.message.package_id, event.message.sticker_id)
     except LineBotApiError as e:
-        line_bot_api.push_message(profile.user_id, TextSendMessage(text='我沒有這個貼圖QQ'))
-        line_bot_api.push_message(profile.user_id, StickerSendMessage(package_id=event.message.package_id, sticker_id=event.message.sticker_id))
+        line_bot_api.push_message(event.source.user_id, TextSendMessage(text='我沒有這個貼圖QQ'))
+        line_bot_api.push_message(event.source.user_id, StickerSendMessage(package_id=2, sticker_id=154))
 
 
 @handler.add(PostbackEvent)
