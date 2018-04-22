@@ -1,5 +1,6 @@
 import os
-import time
+from datetime import datetime
+import pytz
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
@@ -92,9 +93,11 @@ def handle_postback(event):
         message.worksIntro5(line_bot_api, profile.user_id)
     # app
     if event.postback.data == 'time':
-        now = time.localtime()
-        dateAndTime = str(now[0]) + '年 ' + str(now[1]) + '月 ' + str(now[2]) + '日' + str(now[3]) + ' 時 ' + str(now[4]) + '分'
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=dateAndTime))
+        now = datetime.utcnow()
+        tpe = pytz.timezone('Asia/Taipei')
+        tpeTime = tpe.fromutc(utcnow)
+        time = str(now[0]) + '年 ' + str(tpeTime[1]) + '月 ' + str(tpeTime[2]) + '日' + str(tpeTime[3]) + ' 時 ' + str(tpeTime[4]) + '分'
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=time))
 
 
 if __name__ == "__main__":
