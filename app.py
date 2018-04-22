@@ -137,8 +137,8 @@ def handle_message(event):
 def handle_postback(event):
     msgListDict = {'works-intro1':message.worksIntro1, 'works-intro2':message.worksIntro2, 'works-intro3':message.worksIntro3, 'works-intro4':message.worksIntro4, 'works-intro5':message.worksIntro5}
     profile = line_bot_api.get_profile(event.source.user_id)
-    if event.postback.data in msgStackDict.keys():
-        for msg in msgStackDict[event.postback.data]:
+    if event.postback.data in msgListDict.keys():
+        for msg in msgListDict[event.postback.data]:
             line_bot_api.push_message(profile.user_id, msg)
 
 if __name__ == "__main__":
