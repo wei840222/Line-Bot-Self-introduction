@@ -56,7 +56,8 @@ def handle_message(event):
         '學歷': message.education, '畢業': message.education,
         '專長': message.expertise, '程式': message.expertise, '會什麼': message.expertise,
         '作品': message.works, '專題': message.works, '專案': message.works,
-        '小工具': message.tools, '工具': message.tools
+        '小工具': message.tools, '工具': message.tools,
+        '聯繫方式': message.contact, '郵件': message.contact, 'mail': message.contact
     }
 
     # search key word in msgDict
@@ -96,7 +97,7 @@ def handle_postback(event):
         utcnow = datetime.utcnow()
         tpe = pytz.timezone('Asia/Taipei')
         tpeTime = tpe.fromutc(utcnow)
-        time = str(now[0]) + '年 ' + str(tpeTime[1]) + '月 ' + str(tpeTime[2]) + '日' + str(tpeTime[3]) + ' 時 ' + str(tpeTime[4]) + '分'
+        time = str(tpeTime[0]) + '年 ' + str(tpeTime[1]) + '月 ' + str(tpeTime[2]) + '日' + str(tpeTime[3]) + ' 時 ' + str(tpeTime[4]) + '分'
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=time))
 
 

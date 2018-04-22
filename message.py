@@ -159,3 +159,5 @@ tools = TemplateSendMessage(
         ]
     )
 )
+
+contact = TextSendMessage(text='wei840222@gmail.com')
