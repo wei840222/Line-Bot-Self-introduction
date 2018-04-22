@@ -99,8 +99,8 @@ def handle_message(event):
         url = 'http://opendata.cwb.gov.tw/opendataapi?dataid=' + locationDict[location] + '&authorizationkey=' + WEATHER_API_KEY
         data = requests.get(url).text
         weatherComment = data.split('<parameterValue>')[1].split('</parameterValue>')[0]
-        weatherToday = data.split('<parameterValue>')[1].split('</parameterValue>')[0]
-        weatherTomorrow = data.split('<parameterValue>')[1].split('</parameterValue>')[0]
+        weatherToday = data.split('<parameterValue>')[2].split('</parameterValue>')[0]
+        weatherTomorrow = data.split('<parameterValue>')[3].split('</parameterValue>')[0]
         line_bot_api.push_message(profile.user_id, TextSendMessage(text=location + weatherComment))
         line_bot_api.push_message(profile.user_id, TextSendMessage(text=weatherToday))
         line_bot_api.push_message(profile.user_id, TextSendMessage(text=weatherTomorrow))
