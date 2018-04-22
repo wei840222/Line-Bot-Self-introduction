@@ -86,7 +86,7 @@ def handle_message(event):
         elif event.message.text.find('縣') > 0:
             locationIndex = event.message.text.find('縣')
         else:
-            line_bot_api.push_message(profile.user_id, TextSendMessage(text='請直接輸入XX市/縣天氣，查詢天氣。'))
+            line_bot_api.push_message(profile.user_id, TextSendMessage(text='請輸入XX市/縣天氣，查詢天氣。'))
             return None
 
         locationIndexStart = locationIndex - 2
@@ -94,7 +94,8 @@ def handle_message(event):
         location = event.message.text[locationIndexStart:locationIndexEnd]
         url = 'http://opendata.cwb.gov.tw/opendataapi?dataid=F-C0032-009&authorizationkey=' + WEATHER_API_KEY
         origin = requests.get(url)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=origin))
+        print(origin)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='get xml ok'))
         return None
     
     line_bot_api.push_message(profile.user_id, TextSendMessage(text='我不了解「' + event.message.text + '」是什麼意思。'))
