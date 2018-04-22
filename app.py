@@ -126,8 +126,7 @@ def handle_message(event):
                 return None
             else:
                 link = data['href']
-                content = '{}\n\n'.format(link)
-                line_bot_api.push_message(profile.user_id, TextSendMessage(text=content))
+                line_bot_api.push_message(profile.user_id, TextSendMessage(text=link))
 
     line_bot_api.push_message(profile.user_id, TextSendMessage(
         text='我不了解「' + event.message.text + '」是什麼意思。'))
