@@ -38,7 +38,7 @@ education = TemplateSendMessage(
     )
 )
 
-expertise = TextSendMessage(text='C/C++, Python, Linux, Embedded System')
+expertise = TextSendMessage(text='我擅長：C/C++, Python, Linux, Embedded System')
 
 works = TemplateSendMessage(
     alt_text='Works',
@@ -165,4 +165,4 @@ tools = TemplateSendMessage(
     )
 )
 
-contact = TextSendMessage(text='wei840222@gmail.com')
+contact = TextSendMessage(text='這是我的e-mail:\nwei840222@gmail.com')
