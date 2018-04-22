@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
-from linebot.exceptions import InvalidSignatureError
+from linebot.exceptions import LineBotApiError, InvalidSignatureError
 from linebot.models import *
 import message
 
@@ -94,7 +94,7 @@ def handle_message(event):
                 location = key
         if location is None:
             line_bot_api.push_message(
-                profile.user_id, TextSendMessage(text='請輸入XX市/縣天氣，查詢天氣。'))
+                profile.user_id, TextSendMessage(text='請輸入XX市/縣天氣，查詢天氣。\nex:台北市天氣'))
             return None
 
         # get data from gov weather restful api
@@ -126,16 +126,28 @@ def handle_message(event):
                 return None
             else:
                 link = data['href']
-                line_bot_api.push_message(profile.user_id, TextSendMessage(text=link))
-    
+                line_bot_api.push_message(
+                    profile.user_id, TextSendMessage(text=link))
+
     # can't find any msg to reply
     line_bot_api.push_message(profile.user_id, TextSendMessage(
         text='我不了解「' + event.message.text + '」是什麼意思。'))
 
+@handler.add(MessageEvent, message=StickerMessage)
+def handle_sticker_message(event):
+    # echo sticker
+    print(event.message.package_id, event.message.sticker_id)
+    try:
+        line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id=event.message.package_id, sticker_id=event.message.sticker_id))
+    except LineBotApiError as e:
+        line_bot_api.push_message(event.source.user_id, TextSendMessage(text='我沒有這個貼圖QQ'))
+        line_bot_api.push_message(event.source.user_id, StickerSendMessage(package_id=2, sticker_id=154))
+
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    msgListDict = {'works-intro1':message.worksIntro1, 'works-intro2':message.worksIntro2, 'works-intro3':message.worksIntro3, 'works-intro4':message.worksIntro4, 'works-intro5':message.worksIntro5}
+    msgListDict = {'works-intro1': message.worksIntro1, 'works-intro2': message.worksIntro2,
+                   'works-intro3': message.worksIntro3, 'works-intro4': message.worksIntro4, 'works-intro5': message.worksIntro5}
     profile = line_bot_api.get_profile(event.source.user_id)
     if event.postback.data in msgListDict.keys():
         for msg in msgListDict[event.postback.data]:
