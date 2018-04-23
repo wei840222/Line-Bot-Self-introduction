@@ -69,7 +69,7 @@ works = TemplateSendMessage(
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/12009638_963539677040953_6771453829148070682_n.jpg?_nc_cat=0&oh=4ec5cd60367d47d3d70c1653e5c1ae7f&oe=5B5B8C1B',
+                thumbnail_image_url='https://i.ytimg.com/vi/B3hKuGS1lDE/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIZCGAFwAQ==&rs=AOn4CLCmOe1W_jfs_v75Smu9tPtiiPPrWQ',
                 title='8051俄羅斯方塊',
                 text='大二課程專案',
                 actions=[
@@ -188,9 +188,8 @@ tools = TemplateSendMessage(
 
 contact = TextSendMessage(text='這是我的e-mail:\nwei840222@gmail.com')
 
-
 msgDict = {
-    '你好': hi, '您好': hi,
+    '你好': hi, '您好': hi, '安': hi, '嗨': hi, '嘿': hi, '哈囉': hi,
     '名字': name, '稱呼': name,
     '關於我': aboutMe,
     '個性': personality,

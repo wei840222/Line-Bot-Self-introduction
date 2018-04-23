@@ -52,6 +52,15 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, msgSrc.msgDict[key])
             return None
 
+    # all cmd
+    if '指令' in event.message.text:
+        msg = ''
+        for key in msgSrc.msgDict.keys():
+            msg += key + ', '
+        msg = msg[:len(msg)-1]
+        line_bot_api.reply_message(event.reply_token, msg)
+        return None
+
     # Time App
     if '時間' in event.message.text:
         timeApp = app.Time()
