@@ -111,7 +111,7 @@ works = TemplateSendMessage(
 
 worksIntro1 = [
     TextSendMessage(text='大三修習專題課程時,我與一位同學隨我們系主任進行:「智慧型電動單車助力暨資訊顯示系統」開發。'),
-    TextSendMessage(text='在專題進行的過程中,我負責硬體驅動撰寫,如:加速計、藍芽模組與馬達輸出。'),
+    TextSendMessage(text='在專題進行的過程中,我負責硬體驅動撰寫,如:加速計、藍芽模組、電力系統與馬達輸出。'),
     TemplateSendMessage(
         alt_text='模組',
         template=ImageCarouselTemplate(
@@ -124,7 +124,7 @@ worksIntro1 = [
                 ImageCarouselColumn(
                     image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/31065581_1772747192786860_3199231543925185086_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeG9Rk21x2hE_YLI9V_tTyRYMIihs1ssRtxNyHbUGeAFxbZce6cVaEFXElsul2D7WAS4zlO4-D4G0_7S2I7jWD5ddNxErthdkdJfQoQM1fjuJw&oh=1491ea8694b13b391f1c433beeffd8d9&oe=5B5C6ED8',
                     action=URITemplateAction(
-                        label='馬達輸出', uri='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/31065581_1772747192786860_3199231543925185086_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeG9Rk21x2hE_YLI9V_tTyRYMIihs1ssRtxNyHbUGeAFxbZce6cVaEFXElsul2D7WAS4zlO4-D4G0_7S2I7jWD5ddNxErthdkdJfQoQM1fjuJw&oh=1491ea8694b13b391f1c433beeffd8d9&oe=5B5C6ED8')
+                        label='電力系統', uri='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/31065581_1772747192786860_3199231543925185086_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeG9Rk21x2hE_YLI9V_tTyRYMIihs1ssRtxNyHbUGeAFxbZce6cVaEFXElsul2D7WAS4zlO4-D4G0_7S2I7jWD5ddNxErthdkdJfQoQM1fjuJw&oh=1491ea8694b13b391f1c433beeffd8d9&oe=5B5C6ED8')
                 ),
                 ImageCarouselColumn(
                     image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30052413_1772745286120384_8713726014044494444_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeGPy0cqBjLlrY7Rxx-MFTgkSxfW6KMjRFwnKAz8GbVZZebGjXd8SH6EGSOI3ntZI2U6lyPBB58lOLB4Jk7HwfelXq6gitt05aKLz3TDogAuCg&oh=8e125fc97c7d201b2dddf336886cbcb7&oe=5B5F3FB2',
@@ -147,17 +147,17 @@ worksIntro1 = [
                 ImageCarouselColumn(
                     image_url='https://goo.gl/bwQi94',
                     action=URITemplateAction(
-                        label='藍芽', uri='https://goo.gl/bwQi94')
+                        label='創意專題競賽佳作', uri='https://goo.gl/bwQi94')
                 ),
                 ImageCarouselColumn(
                     image_url='https://goo.gl/fkW5mM',
                     action=URITemplateAction(
-                        label='藍芽', uri='https://goo.gl/fkW5mM')
+                        label='電機專題競賽系統組第二名', uri='https://goo.gl/fkW5mM')
                 ),
                 ImageCarouselColumn(
                     image_url='https://goo.gl/UPjXx1',
                     action=URITemplateAction(
-                        label='藍芽', uri='https://goo.gl/UPjXx1')
+                        label='電機專題競賽系統組最佳人氣獎', uri='https://goo.gl/UPjXx1')
                 )
             ]
         )
@@ -169,10 +169,23 @@ worksIntro2 = [
     TextSendMessage(text='有了大三專題的經驗,在既有的硬體上,我規劃出易於維護的軟體架構,針對細部的功能進行演算法開發。'),
     TextSendMessage(text='如:控制機器人硬體之 API、維持行走於賽道上的演算法、執行特定動作之函數。'),
     TextSendMessage(text='競賽得獎紀錄:'),
-    ImageSendMessage(original_content_url='https://goo.gl/ByL1hL',
-                     preview_image_url='https://goo.gl/ByL1hL'),
-    ImageSendMessage(original_content_url='https://goo.gl/pyhyBW',
-                     preview_image_url='https://goo.gl/pyhyBW')
+    TemplateSendMessage(
+        alt_text='獎狀',
+        template=ImageCarouselTemplate(
+            columns=[
+                ImageCarouselColumn(
+                    image_url='https://goo.gl/ByL1hL',
+                    action=URITemplateAction(
+                        label='田間機器人競賽參加證', uri='https://goo.gl/ByL1hL')
+                ),
+                ImageCarouselColumn(
+                    image_url='https://goo.gl/pyhyBW',
+                    action=URITemplateAction(
+                        label='田間機器人競賽佳作', uri='https://goo.gl/pyhyBW')
+                )
+            ]
+        )
+    )
 ]
 
 worksIntro3 = [
