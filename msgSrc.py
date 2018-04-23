@@ -21,7 +21,8 @@ aboutMe = TemplateSendMessage(
 
 personality = TextSendMessage(text='樂觀進取，不排斥去接觸或是學習新的事物，喜歡充滿挑戰的生活。')
 
-interesting = TextSendMessage(text='我喜歡聽音樂、跳舞、看youtube；大學時曾經參加過熱舞社，畢業後也常常聽著之前練舞的音樂放鬆身心。')
+interesting = TextSendMessage(
+    text='我喜歡聽音樂、跳舞、看youtube；大學時曾經參加過熱舞社，畢業後也常常聽著之前練舞的音樂放鬆身心。')
 
 education = TemplateSendMessage(
     alt_text='Education',
@@ -111,24 +112,56 @@ works = TemplateSendMessage(
 worksIntro1 = [
     TextSendMessage(text='大三修習專題課程時,我與一位同學隨我們系主任進行:「智慧型電動單車助力暨資訊顯示系統」開發。'),
     TextSendMessage(text='在專題進行的過程中,我負責硬體驅動撰寫,如:加速計、藍芽模組與馬達輸出。'),
-    ImageSendMessage(original_content_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30420598_1772746002786979_2578228845209619962_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEhIPUf7C4U3Ddl1U9aa8bhIXnm7ACoHp6_0wAjDI8G3Y2WF-iW-zK9eQi8gnPotzqNmv44zL53KXEp-bD2zZtSxXrcD40QeZQqCxH4NEAXBQ&oh=abf908c57635184d8acec348600bbf09&oe=5B52CB3B',
-                     preview_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30420598_1772746002786979_2578228845209619962_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEhIPUf7C4U3Ddl1U9aa8bhIXnm7ACoHp6_0wAjDI8G3Y2WF-iW-zK9eQi8gnPotzqNmv44zL53KXEp-bD2zZtSxXrcD40QeZQqCxH4NEAXBQ&oh=abf908c57635184d8acec348600bbf09&oe=5B52CB3B'),
-    ImageSendMessage(original_content_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/31065581_1772747192786860_3199231543925185086_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeG9Rk21x2hE_YLI9V_tTyRYMIihs1ssRtxNyHbUGeAFxbZce6cVaEFXElsul2D7WAS4zlO4-D4G0_7S2I7jWD5ddNxErthdkdJfQoQM1fjuJw&oh=1491ea8694b13b391f1c433beeffd8d9&oe=5B5C6ED8',
-                     preview_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/31065581_1772747192786860_3199231543925185086_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeG9Rk21x2hE_YLI9V_tTyRYMIihs1ssRtxNyHbUGeAFxbZce6cVaEFXElsul2D7WAS4zlO4-D4G0_7S2I7jWD5ddNxErthdkdJfQoQM1fjuJw&oh=1491ea8694b13b391f1c433beeffd8d9&oe=5B5C6ED8'),
-    ImageSendMessage(original_content_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30052413_1772745286120384_8713726014044494444_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeGPy0cqBjLlrY7Rxx-MFTgkSxfW6KMjRFwnKAz8GbVZZebGjXd8SH6EGSOI3ntZI2U6lyPBB58lOLB4Jk7HwfelXq6gitt05aKLz3TDogAuCg&oh=8e125fc97c7d201b2dddf336886cbcb7&oe=5B5F3FB2',
-                     preview_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30052413_1772745286120384_8713726014044494444_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeGPy0cqBjLlrY7Rxx-MFTgkSxfW6KMjRFwnKAz8GbVZZebGjXd8SH6EGSOI3ntZI2U6lyPBB58lOLB4Jk7HwfelXq6gitt05aKLz3TDogAuCg&oh=8e125fc97c7d201b2dddf336886cbcb7&oe=5B5F3FB2'),
+    TemplateSendMessage(
+        alt_text='模組',
+        template=ImageCarouselTemplate(
+            columns=[
+                ImageCarouselColumn(
+                    image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30420598_1772746002786979_2578228845209619962_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEhIPUf7C4U3Ddl1U9aa8bhIXnm7ACoHp6_0wAjDI8G3Y2WF-iW-zK9eQi8gnPotzqNmv44zL53KXEp-bD2zZtSxXrcD40QeZQqCxH4NEAXBQ&oh=abf908c57635184d8acec348600bbf09&oe=5B52CB3B',
+                    action=URITemplateAction(
+                        label='加速計', uri='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30420598_1772746002786979_2578228845209619962_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEhIPUf7C4U3Ddl1U9aa8bhIXnm7ACoHp6_0wAjDI8G3Y2WF-iW-zK9eQi8gnPotzqNmv44zL53KXEp-bD2zZtSxXrcD40QeZQqCxH4NEAXBQ&oh=abf908c57635184d8acec348600bbf09&oe=5B52CB3B')
+                ),
+                ImageCarouselColumn(
+                    image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/31065581_1772747192786860_3199231543925185086_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeG9Rk21x2hE_YLI9V_tTyRYMIihs1ssRtxNyHbUGeAFxbZce6cVaEFXElsul2D7WAS4zlO4-D4G0_7S2I7jWD5ddNxErthdkdJfQoQM1fjuJw&oh=1491ea8694b13b391f1c433beeffd8d9&oe=5B5C6ED8',
+                    action=URITemplateAction(
+                        label='馬達輸出', uri='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/31065581_1772747192786860_3199231543925185086_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeG9Rk21x2hE_YLI9V_tTyRYMIihs1ssRtxNyHbUGeAFxbZce6cVaEFXElsul2D7WAS4zlO4-D4G0_7S2I7jWD5ddNxErthdkdJfQoQM1fjuJw&oh=1491ea8694b13b391f1c433beeffd8d9&oe=5B5C6ED8')
+                ),
+                ImageCarouselColumn(
+                    image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30052413_1772745286120384_8713726014044494444_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeGPy0cqBjLlrY7Rxx-MFTgkSxfW6KMjRFwnKAz8GbVZZebGjXd8SH6EGSOI3ntZI2U6lyPBB58lOLB4Jk7HwfelXq6gitt05aKLz3TDogAuCg&oh=8e125fc97c7d201b2dddf336886cbcb7&oe=5B5F3FB2',
+                    action=URITemplateAction(
+                        label='馬達輸出', uri='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30052413_1772745286120384_8713726014044494444_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeGPy0cqBjLlrY7Rxx-MFTgkSxfW6KMjRFwnKAz8GbVZZebGjXd8SH6EGSOI3ntZI2U6lyPBB58lOLB4Jk7HwfelXq6gitt05aKLz3TDogAuCg&oh=8e125fc97c7d201b2dddf336886cbcb7&oe=5B5F3FB2')
+                )
+            ]
+        )
+    ),
     TextSendMessage(
         text='雖然第一次做大型專題,難免有困難,但我發現要與組員有效溝通,不是靠口頭表述,而是藉著圖表整理的實驗結果,更有說服力也能轉達想要表達的意思,並透過 GitHub 管理程式碼,可以更好的掌握進度與協力開發,避免時間拖延。。'),
     TextSendMessage(text='專題競賽海報:'),
     TextSendMessage(
         text='https://drive.google.com/open?id=1ckI6pIbABZSvs8wmloe2cYNLg8kLM3Pv'),
     TextSendMessage(text='競賽得獎紀錄:'),
-    ImageSendMessage(original_content_url='https://goo.gl/bwQi94',
-                     preview_image_url='https://goo.gl/bwQi94'),
-    ImageSendMessage(original_content_url='https://goo.gl/fkW5mM',
-                     preview_image_url='https://goo.gl/fkW5mM'),
-    ImageSendMessage(original_content_url='https://goo.gl/UPjXx1',
-                     preview_image_url='https://goo.gl/UPjXx1')
+    TemplateSendMessage(
+        alt_text='獎狀',
+        template=ImageCarouselTemplate(
+            columns=[
+                ImageCarouselColumn(
+                    image_url='https://goo.gl/bwQi94',
+                    action=URITemplateAction(
+                        label='藍芽', uri='https://goo.gl/bwQi94')
+                ),
+                ImageCarouselColumn(
+                    image_url='https://goo.gl/fkW5mM',
+                    action=URITemplateAction(
+                        label='藍芽', uri='https://goo.gl/fkW5mM')
+                ),
+                ImageCarouselColumn(
+                    image_url='https://goo.gl/UPjXx1',
+                    action=URITemplateAction(
+                        label='藍芽', uri='https://goo.gl/UPjXx1')
+                )
+            ]
+        )
+    )
 ]
 
 worksIntro2 = [
@@ -187,29 +220,9 @@ tools = TemplateSendMessage(
 )
 
 contact = TextSendMessage(text='這是我的e-mail:\nwei840222@gmail.com')
-resume = TextSendMessage(text='這是我的履歷:\nhttps://drive.google.com/open?id=1BiQ0Odq9o8N8mgiwP1xstWS1CTaHH8Z6')
+resume = TextSendMessage(
+    text='這是我的履歷:\nhttps://drive.google.com/open?id=1BiQ0Odq9o8N8mgiwP1xstWS1CTaHH8Z6')
 github = TextSendMessage(text='這是我的GitHub:\nhttps://github.com/wei840222')
-
-image_carousel_template_message = TemplateSendMessage(
-    alt_text='ImageCarousel template',
-    template=ImageCarouselTemplate(
-        columns=[
-            ImageCarouselColumn(
-                image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30420598_1772746002786979_2578228845209619962_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEhIPUf7C4U3Ddl1U9aa8bhIXnm7ACoHp6_0wAjDI8G3Y2WF-iW-zK9eQi8gnPotzqNmv44zL53KXEp-bD2zZtSxXrcD40QeZQqCxH4NEAXBQ&oh=abf908c57635184d8acec348600bbf09&oe=5B52CB3B',
-                action=URITemplateAction(
-                        label='藍芽', uri='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30420598_1772746002786979_2578228845209619962_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEhIPUf7C4U3Ddl1U9aa8bhIXnm7ACoHp6_0wAjDI8G3Y2WF-iW-zK9eQi8gnPotzqNmv44zL53KXEp-bD2zZtSxXrcD40QeZQqCxH4NEAXBQ&oh=abf908c57635184d8acec348600bbf09&oe=5B52CB3B')
-            ),
-            ImageCarouselColumn(
-                image_url='https://example.com/item2.jpg',
-                action=PostbackTemplateAction(
-                    label='postback2',
-                    text='postback text2',
-                    data='action=buy&itemid=2'
-                )
-            )
-        ]
-    )
-)
 
 msgDict = {
     '你好': hi, '您好': hi, '安': hi, '嗨': hi, '嘿': hi, '哈囉': hi,
@@ -223,10 +236,8 @@ msgDict = {
     '小工具': tools, '工具': tools,
     '聯繫方式': contact, '郵件': contact, 'mail': contact,
     '履歷': resume,
-    'github': github, 'GitHub': github,
-    'test': image_carousel_template_message
+    'github': github, 'GitHub': github
 }
 
 msgListDict = {'works-intro1': worksIntro1, 'works-intro2': worksIntro2,
                'works-intro3': worksIntro3, 'works-intro4': worksIntro4, 'works-intro5': worksIntro5}
-
