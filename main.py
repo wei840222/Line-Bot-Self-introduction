@@ -1,6 +1,4 @@
 import os
-from datetime import datetime
-import pytz
 import requests
 from bs4 import BeautifulSoup
 from flask import Flask, request, abort
@@ -8,6 +6,7 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import LineBotApiError, InvalidSignatureError
 from linebot.models import *
 import msgSrc
+import app
 
 
 main = Flask(__name__)
@@ -65,12 +64,8 @@ def handle_message(event):
 
     # time app
     if '時間' in event.message.text:
-        tpe = pytz.timezone('Asia/Taipei')
-        tpeTime = str(tpe.fromutc(datetime.utcnow()))
-        date = tpeTime.split(' ')[0].split('-')
-        time = tpeTime.split(' ')[1].split('.')[0].split(':')
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=(
-            '台北時間：' + date[0] + '年' + date[1] + '月' + date[2] + '日' + time[0] + '時' + time[1] + '分')))
+        timeApp = app.Time()
+        line_bot_api.reply_message(event.reply_token, timeApp.getTime())
         return None
 
     # weather app
