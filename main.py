@@ -57,7 +57,7 @@ def handle_message(event):
         msg = ''
         for key in msgSrc.msgDict.keys():
             msg += key + ', '
-        msg = msg[:len(msg)-1]
+        msg = msg[:len(msg)-2]
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=msg))
         return None
 
