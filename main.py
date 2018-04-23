@@ -1,6 +1,4 @@
 import os
-import requests
-from bs4 import BeautifulSoup
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import LineBotApiError, InvalidSignatureError
@@ -33,14 +31,6 @@ def callback():
 
     return 'OK'
 
-locationDict = {
-    '台北市': 'F-C0032-009', '新北市': 'F-C0032-010', '基隆市': 'F-C0032-011', '花蓮縣': 'F-C0032-012', '宜蘭縣': 'F-C0032-013', '金門縣': 'F-C0032-014', '澎湖縣': 'F-C0032-015',
-    '台南市': 'F-C0032-016', '高雄市': 'F-C0032-017', '嘉義縣': 'F-C0032-018', '嘉義市': 'F-C0032-019', '苗栗縣': 'F-C0032-020', '台中市': 'F-C0032-021', '桃園市': 'F-C0032-022',
-    '新竹縣': 'F-C0032-023', '新竹市': 'F-C0032-024', '屏東縣': 'F-C0032-025', '南投縣': 'F-C0032-026', '台東縣': 'F-C0032-027', '彰化縣': 'F-C0032-028', '雲林縣': 'F-C0032-029',
-    '連江縣': 'F-C0032-030'
-}
-
-
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     # log #
@@ -62,55 +52,33 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, msgSrc.msgDict[key])
             return None
 
-    # time app
+    # Time App
     if '時間' in event.message.text:
         timeApp = app.Time()
         line_bot_api.reply_message(event.reply_token, timeApp.getTime())
         return None
 
-    # weather app
+    # Weather App
     if '天氣' in event.message.text:
-        # find the location users ask in the string of user input
-        location = None
-        for key in locationDict.keys():
-            if key in event.message.text.replace('臺', '台'):
-                location = key
-        if location is None:
-            line_bot_api.push_message(
-                profile.user_id, TextSendMessage(text='請輸入XX市/縣天氣，查詢天氣。\nex:台北市天氣'))
-            return None
-
-        # get data from gov weather restful api
-        url = 'http://opendata.cwb.gov.tw/opendataapi?dataid=' + \
-            locationDict[location] + '&authorizationkey=' + WEATHER_API_KEY
-        data = requests.get(url).text
-        weatherComment = data.split('<parameterValue>')[
-            1].split('</parameterValue>')[0]
-        weatherToday = data.split('<parameterValue>')[
-            2].split('</parameterValue>')[0]
-        weatherTomorrow = data.split('<parameterValue>')[
-            3].split('</parameterValue>')[0]
-        line_bot_api.push_message(
-            profile.user_id, TextSendMessage(text=location + weatherComment))
-        line_bot_api.push_message(
-            profile.user_id, TextSendMessage(text=weatherToday))
-        line_bot_api.push_message(
-            profile.user_id, TextSendMessage(text=weatherTomorrow))
+        weatherApp = app.Weather(WEATHER_API_KEY)
+        weatherMsg = weatherApp.getWeather(event.message.text)
+        for msg in weatherMsg:
+            line_bot_api.push_message(event.source.user_id, msg)
         return None
 
-    # Apple News
-    if '新聞' in event.message.text:
-        url = 'http://www.appledaily.com.tw/realtimenews/section/new/'
-        rs = requests.session()
-        res = rs.get(url, verify=False)
-        soup = BeautifulSoup(res.text, 'html.parser')
-        for index, data in enumerate(soup.select('.rtddt a'), 0):
-            if index == 5:
-                return None
-            else:
-                link = data['href']
-                line_bot_api.push_message(
-                    profile.user_id, TextSendMessage(text=link))
+    # # Apple News
+    # if '新聞' in event.message.text:
+    #     url = 'http://www.appledaily.com.tw/realtimenews/section/new/'
+    #     rs = requests.session()
+    #     res = rs.get(url, verify=False)
+    #     soup = BeautifulSoup(res.text, 'html.parser')
+    #     for index, data in enumerate(soup.select('.rtddt a'), 0):
+    #         if index == 5:
+    #             return None
+    #         else:
+    #             link = data['href']
+    #             line_bot_api.push_message(
+    #                 profile.user_id, TextSendMessage(text=link))
 
     # can't find any msg to reply
     line_bot_api.push_message(profile.user_id, TextSendMessage(
