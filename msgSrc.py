@@ -190,24 +190,28 @@ contact = TextSendMessage(text='這是我的e-mail:\nwei840222@gmail.com')
 resume = TextSendMessage(text='這是我的履歷:\nhttps://drive.google.com/open?id=1BiQ0Odq9o8N8mgiwP1xstWS1CTaHH8Z6')
 github = TextSendMessage(text='這是我的GitHub:\nhttps://github.com/wei840222')
 
-imagemap_message = ImagemapSendMessage(
-    base_url='https://goo.gl/ByL1hL',
-    alt_text='this is an imagemap',
-    base_size=BaseSize(height=1040, width=1040),
-    actions=[
-        URIImagemapAction(
-            link_uri='https://example.com/',
-            area=ImagemapArea(
-                x=0, y=0, width=520, height=1040
+image_carousel_template_message = TemplateSendMessage(
+    alt_text='ImageCarousel template',
+    template=ImageCarouselTemplate(
+        columns=[
+            ImageCarouselColumn(
+                image_url='https://example.com/item1.jpg',
+                action=PostbackTemplateAction(
+                    label='postback1',
+                    text='postback text1',
+                    data='action=buy&itemid=1'
+                )
+            ),
+            ImageCarouselColumn(
+                image_url='https://example.com/item2.jpg',
+                action=PostbackTemplateAction(
+                    label='postback2',
+                    text='postback text2',
+                    data='action=buy&itemid=2'
+                )
             )
-        ),
-        MessageImagemapAction(
-            text='hello',
-            area=ImagemapArea(
-                x=520, y=0, width=520, height=1040
-            )
-        )
-    ]
+        ]
+    )
 )
 
 msgDict = {
@@ -223,7 +227,7 @@ msgDict = {
     '聯繫方式': contact, '郵件': contact, 'mail': contact,
     '履歷': resume,
     'github': github, 'GitHub': github,
-    'test': imagemap_message
+    'test': image_carousel_template_message
 }
 
 msgListDict = {'works-intro1': worksIntro1, 'works-intro2': worksIntro2,
