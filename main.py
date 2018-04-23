@@ -7,24 +7,24 @@ from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import LineBotApiError, InvalidSignatureError
 from linebot.models import *
-import message
+import msgSrc
 
 
-app = Flask(__name__)
+main = Flask(__name__)
 
 line_bot_api = LineBotApi(os.environ.get('ACCESS_TOKEN'))
 handler = WebhookHandler(os.environ.get('SECRET'))
 WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
 
 
-@app.route("/callback", methods=['POST'])
+@main.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
 
     # get request body as text
     body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
+    main.logger.info("Request body: " + body)
 
     # handle webhook body
     try:
@@ -33,20 +33,6 @@ def callback():
         abort(400)
 
     return 'OK'
-
-
-msgDict = {
-    '你好': message.hi, '您好': message.hi,
-    '名字': message.name, '稱呼': message.name,
-    '關於我': message.aboutMe,
-    '個性': message.personality,
-    '興趣': message.interesting, '愛好': message.interesting,
-    '學歷': message.education, '畢業': message.education,
-    '專長': message.expertise, '程式': message.expertise, '會什麼': message.expertise,
-    '作品': message.works, '專題': message.works, '專案': message.works,
-    '小工具': message.tools, '工具': message.tools,
-    '聯繫方式': message.contact, '郵件': message.contact, 'mail': message.contact
-}
 
 locationDict = {
     '台北市': 'F-C0032-009', '新北市': 'F-C0032-010', '基隆市': 'F-C0032-011', '花蓮縣': 'F-C0032-012', '宜蘭縣': 'F-C0032-013', '金門縣': 'F-C0032-014', '澎湖縣': 'F-C0032-015',
@@ -72,9 +58,9 @@ def handle_message(event):
     # log #
 
     # search key word in msgDict and reply
-    for key in msgDict.keys():
+    for key in msgSrc.msgDict.keys():
         if key in event.message.text:
-            line_bot_api.reply_message(event.reply_token, msgDict[key])
+            line_bot_api.reply_message(event.reply_token, msgSrc.msgDict[key])
             return None
 
     # time app
@@ -152,13 +138,11 @@ def handle_sticker_message(event):
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    msgListDict = {'works-intro1': message.worksIntro1, 'works-intro2': message.worksIntro2,
-                   'works-intro3': message.worksIntro3, 'works-intro4': message.worksIntro4, 'works-intro5': message.worksIntro5}
     profile = line_bot_api.get_profile(event.source.user_id)
-    if event.postback.data in msgListDict.keys():
-        for msg in msgListDict[event.postback.data]:
+    if event.postback.data in msgSrc.msgListDict.keys():
+        for msg in msgSrc.msgListDict[event.postback.data]:
             line_bot_api.push_message(profile.user_id, msg)
 
 
 if __name__ == "__main__":
-    app.run()
+    main.run()
