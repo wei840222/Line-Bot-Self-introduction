@@ -41,15 +41,18 @@ class Weather():
     def getWeather(self, queryText):
         # find the location users ask in the string of user input
         location = None
+        print(self.locationDict.keys())
+        print(queryText.replace('臺', '台'))
         for key in self.locationDict.keys():
             if key in queryText.replace('臺', '台'):
-                self.location = key
+                location = key
+        print(location)
+        msgList = list()
         if location is not None:
-            msgList = list()
             xmlData = self.__getWeatherData(location)
             weatherForecast = self.__getXmlValueFromTag(xmlData, 'parameterValue')
             for text in weatherForecast:
                 msgList.append(TextSendMessage(text=text))
-            return msgList
         else:
-            return list(TextSendMessage(text='請輸入XX市/縣天氣，查詢天氣。\nex:台北市天氣'))
+            msgList.append(TextSendMessage(text='請輸入XX市/縣天氣，查詢天氣。\nex:台北市天氣'))
+        return msgList
