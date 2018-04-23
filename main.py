@@ -66,19 +66,13 @@ def handle_message(event):
             line_bot_api.push_message(event.source.user_id, msg)
         return None
 
-    # # Apple News
-    # if '新聞' in event.message.text:
-    #     url = 'http://www.appledaily.com.tw/realtimenews/section/new/'
-    #     rs = requests.session()
-    #     res = rs.get(url, verify=False)
-    #     soup = BeautifulSoup(res.text, 'html.parser')
-    #     for index, data in enumerate(soup.select('.rtddt a'), 0):
-    #         if index == 5:
-    #             return None
-    #         else:
-    #             link = data['href']
-    #             line_bot_api.push_message(
-    #                 profile.user_id, TextSendMessage(text=link))
+    # Apple News
+    if '新聞' in event.message.text:
+        newsApp = app.News()
+        newsMsg = newsApp.getNews()
+        for msg in newsMsg:
+            line_bot_api.push_message(event.source.user_id, msg)
+        return None
 
     # can't find any msg to reply
     line_bot_api.push_message(profile.user_id, TextSendMessage(

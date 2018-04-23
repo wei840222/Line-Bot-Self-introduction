@@ -1,6 +1,7 @@
 from datetime import datetime
 import pytz
 import requests
+from bs4 import BeautifulSoup
 from linebot.models import *
 
 
@@ -55,4 +56,18 @@ class Weather():
                 msgList.append(TextSendMessage(text=text))
         else:
             msgList.append(TextSendMessage(text='請輸入XX(市/縣)天氣，查詢天氣。\nex:台北市天氣 or 高雄天氣'))
+        return msgList
+
+class News():
+    url = 'http://www.appledaily.com.tw/realtimenews/section/new/'
+
+    def __init__(self):
+        pass
+    
+    def getNews(self):
+        res = requests.get(self.url, verify=False)
+        soup = BeautifulSoup(res.text, 'html.parser')
+        msgList = list()
+        for news in soup.select('.rtddt a')[:5]:
+            msgList.append(TextSendMessage(text=news['href']))
         return msgList
