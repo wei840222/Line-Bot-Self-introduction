@@ -1,157 +1,73 @@
-import os
 from datetime import datetime
 import pytz
 import requests
 from bs4 import BeautifulSoup
-from flask import Flask, request, abort
-from linebot import LineBotApi, WebhookHandler
-from linebot.exceptions import LineBotApiError, InvalidSignatureError
 from linebot.models import *
-import message
 
 
-app = Flask(__name__)
+class Time():
+    def __init__(self):
+        self.tpeTimeZone = pytz.timezone('Asia/Taipei')
 
-line_bot_api = LineBotApi(os.environ.get('ACCESS_TOKEN'))
-handler = WebhookHandler(os.environ.get('SECRET'))
-WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
-
-
-@app.route("/callback", methods=['POST'])
-def callback():
-    # get X-Line-Signature header value
-    signature = request.headers['X-Line-Signature']
-
-    # get request body as text
-    body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
-
-    # handle webhook body
-    try:
-        handler.handle(body, signature)
-    except InvalidSignatureError:
-        abort(400)
-
-    return 'OK'
-
-
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    # log #
-    print("Handle: userId: " + event.source.user_id + ", reply_token: " +
-          event.reply_token + ", message: " + event.message.text)
-    try:
-        profile = line_bot_api.get_profile(event.source.user_id)
-        print(profile.display_name)
-        print(profile.user_id)
-        print(profile.picture_url)
-        print(profile.status_message)
-    except LineBotApiError as e:
-        print('can\'t get user profile')
-    # log #
-
-    msgDict = {
-        '你好': message.hi, '您好': message.hi,
-        '名字': message.name, '稱呼': message.name,
-        '關於我': message.aboutMe,
-        '個性': message.personality,
-        '興趣': message.interesting, '愛好': message.interesting,
-        '學歷': message.education, '畢業': message.education,
-        '專長': message.expertise, '程式': message.expertise, '會什麼': message.expertise,
-        '作品': message.works, '專題': message.works, '專案': message.works,
-        '小工具': message.tools, '工具': message.tools,
-        '聯繫方式': message.contact, '郵件': message.contact, 'mail': message.contact
-    }
-
-    # search key word in msgDict and reply
-    for key in msgDict.keys():
-        if key in event.message.text:
-            line_bot_api.reply_message(event.reply_token, msgDict[key])
-            return None
-
-    # time app
-    if '時間' in event.message.text:
-        tpe = pytz.timezone('Asia/Taipei')
-        tpeTime = str(tpe.fromutc(datetime.utcnow()))
+    def getTime(self):
+        tpeTime = str(self.tpeTimeZone.fromutc(datetime.utcnow()))
         date = tpeTime.split(' ')[0].split('-')
         time = tpeTime.split(' ')[1].split('.')[0].split(':')
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=(
-            '台北時間：' + date[0] + '年' + date[1] + '月' + date[2] + '日' + time[0] + '時' + time[1] + '分')))
-        return None
+        return TextSendMessage(text=('台北時間：' + date[0] + '年' + date[1] + '月' + date[2] + '日' + time[0] + '時' + time[1] + '分'))
 
-    # weather app
+
+class Weather():
     locationDict = {
         '台北市': 'F-C0032-009', '新北市': 'F-C0032-010', '基隆市': 'F-C0032-011', '花蓮縣': 'F-C0032-012', '宜蘭縣': 'F-C0032-013', '金門縣': 'F-C0032-014', '澎湖縣': 'F-C0032-015',
         '台南市': 'F-C0032-016', '高雄市': 'F-C0032-017', '嘉義縣': 'F-C0032-018', '嘉義市': 'F-C0032-019', '苗栗縣': 'F-C0032-020', '台中市': 'F-C0032-021', '桃園市': 'F-C0032-022',
         '新竹縣': 'F-C0032-023', '新竹市': 'F-C0032-024', '屏東縣': 'F-C0032-025', '南投縣': 'F-C0032-026', '台東縣': 'F-C0032-027', '彰化縣': 'F-C0032-028', '雲林縣': 'F-C0032-029',
-        '連江縣': 'F-C0032-030'
+        '連江縣': 'F-C0032-030',
+        '台北': 'F-C0032-009', '新北': 'F-C0032-010', '基隆': 'F-C0032-011', '花蓮': 'F-C0032-012', '宜蘭': 'F-C0032-013', '金門': 'F-C0032-014', '澎湖': 'F-C0032-015',
+        '台南': 'F-C0032-016', '高雄': 'F-C0032-017', '嘉義': 'F-C0032-019', '苗栗': 'F-C0032-020', '台中': 'F-C0032-021', '桃園': 'F-C0032-022', '新竹': 'F-C0032-024',
+        '屏東': 'F-C0032-025', '南投': 'F-C0032-026', '台東': 'F-C0032-027', '彰化': 'F-C0032-028', '雲林': 'F-C0032-029', '連江': 'F-C0032-030'
     }
-    if '天氣' in event.message.text:
-        # find the location users ask in the string of user input
-        location = None
-        for key in locationDict.keys():
-            if key in event.message.text.replace('臺', '台'):
-                location = key
-        if location is None:
-            line_bot_api.push_message(
-                profile.user_id, TextSendMessage(text='請輸入XX市/縣天氣，查詢天氣。\nex:台北市天氣'))
-            return None
 
+    def __init__(self, WEATHER_API_KEY):
+        self.WEATHER_API_KEY = WEATHER_API_KEY
+
+    def __getWeatherData(self, location):
         # get data from gov weather restful api
         url = 'http://opendata.cwb.gov.tw/opendataapi?dataid=' + \
-            locationDict[location] + '&authorizationkey=' + WEATHER_API_KEY
-        data = requests.get(url).text
-        weatherComment = data.split('<parameterValue>')[
-            1].split('</parameterValue>')[0]
-        weatherToday = data.split('<parameterValue>')[
-            2].split('</parameterValue>')[0]
-        weatherTomorrow = data.split('<parameterValue>')[
-            3].split('</parameterValue>')[0]
-        line_bot_api.push_message(
-            profile.user_id, TextSendMessage(text=location + weatherComment))
-        line_bot_api.push_message(
-            profile.user_id, TextSendMessage(text=weatherToday))
-        line_bot_api.push_message(
-            profile.user_id, TextSendMessage(text=weatherTomorrow))
-        return None
+        self.locationDict[location] + '&authorizationkey=' + self.WEATHER_API_KEY
+        return requests.get(url).text
 
-    # Apple News
-    if '新聞' in event.message.text:
-        url = 'http://www.appledaily.com.tw/realtimenews/section/new/'
-        rs = requests.session()
-        res = rs.get(url, verify=False)
+    def __getXmlValueFromTag(self, xmlData, tag):
+        result = list()
+        for value in xmlData.split('<' + tag + '>')[1:]:
+            result.append(value.split('</' + tag + '>')[0])
+        return result
+
+    def getWeather(self, queryText):
+        # find the location users ask in the string of user input
+        location = None
+        for key in self.locationDict.keys():
+            if key in queryText.replace('臺', '台'):
+                location = key
+        msgList = list()
+        if location is not None:
+            xmlData = self.__getWeatherData(location)
+            weatherForecast = self.__getXmlValueFromTag(xmlData, 'parameterValue')
+            for text in weatherForecast:
+                msgList.append(TextSendMessage(text=text))
+        else:
+            msgList.append(TextSendMessage(text='請輸入XX(市/縣)天氣，查詢天氣。\nex:台北市天氣 or 高雄天氣'))
+        return msgList
+
+class News():
+    url = 'http://www.appledaily.com.tw/realtimenews/section/new/'
+
+    def __init__(self):
+        pass
+    
+    def getNews(self):
+        res = requests.get(self.url, verify=False)
         soup = BeautifulSoup(res.text, 'html.parser')
-        for index, data in enumerate(soup.select('.rtddt a'), 0):
-            if index == 5:
-                return None
-            else:
-                link = data['href']
-                line_bot_api.push_message(
-                    profile.user_id, TextSendMessage(text=link))
-
-    # can't find any msg to reply
-    line_bot_api.push_message(profile.user_id, TextSendMessage(
-        text='我不了解「' + event.message.text + '」是什麼意思。'))
-
-@handler.add(MessageEvent, message=StickerMessage)
-def handle_sticker_message(event):
-    # echo sticker
-    print(event.message.package_id, event.message.sticker_id)
-    try:
-        line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id=event.message.package_id, sticker_id=event.message.sticker_id))
-    except LineBotApiError as e:
-        line_bot_api.push_message(event.source.user_id, TextSendMessage(text='我沒有這個貼圖QQ'))
-        line_bot_api.push_message(event.source.user_id, StickerSendMessage(package_id=2, sticker_id=154))
-
-
-@handler.add(PostbackEvent)
-def handle_postback(event):
-    msgListDict = {'works-intro1': message.worksIntro1, 'works-intro2': message.worksIntro2,
-                   'works-intro3': message.worksIntro3, 'works-intro4': message.worksIntro4, 'works-intro5': message.worksIntro5}
-    profile = line_bot_api.get_profile(event.source.user_id)
-    if event.postback.data in msgListDict.keys():
-        for msg in msgListDict[event.postback.data]:
-            line_bot_api.push_message(profile.user_id, msg)
-
-if __name__ == "__main__":
-    app.run()
+        msgList = list()
+        for news in soup.select('.rtddt a')[:5]:
+            msgList.append(TextSendMessage(text=news['href']))
+        return msgList

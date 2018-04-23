@@ -1,5 +1,5 @@
 pytz
-beautifulsoup4
+bs4
 flask
 line-bot-sdk
 gunicorn
