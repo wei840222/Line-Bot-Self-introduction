@@ -52,4 +52,4 @@ class Weather():
                 msgList.append(TextSendMessage(text=text))
             return msgList
         else:
-            return TextSendMessage(text='請輸入XX市/縣天氣，查詢天氣。\nex:台北市天氣')
+            return list(TextSendMessage(text='請輸入XX市/縣天氣，查詢天氣。\nex:台北市天氣'))
