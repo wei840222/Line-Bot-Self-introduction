@@ -7,26 +7,28 @@ name = TextSendMessage(text='你可以叫我 wei')
 aboutMe = TemplateSendMessage(
     alt_text='About Me',
     template=ButtonsTemplate(
-        thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/16114195_1303190386409212_9033059278762952732_n.jpg?_nc_cat=0&oh=80dae332df231e48592642b8588e3707&oe=5B6AE316',
+        thumbnail_image_url='https://scontent.ftpe7-3.fna.fbcdn.net/v/t1.0-9/12573199_1015515881843332_8373003669342196560_n.jpg?_nc_fx=ftpe7-3&_nc_cat=0&oh=a7f95a83d7b93b67db49a2941755be3c&oe=5B5B722C',
         title='關於我',
         text='您好，我叫萬俊瑋，點擊下面可以了解更多資訊...',
         actions=[
             MessageTemplateAction(label='個性', text='個性'),
             MessageTemplateAction(label='興趣', text='興趣'),
             MessageTemplateAction(label='學歷', text='學歷'),
-            MessageTemplateAction(label='專長', text='專長')
+            MessageTemplateAction(label='專長', text='專長'),
+            URITemplateAction(label='履歷', uri='https://drive.google.com/open?id=1BiQ0Odq9o8N8mgiwP1xstWS1CTaHH8Z6'),
+            URITemplateAction(label='GitHub',uri='https://github.com/wei840222')
         ]
     )
 )
 
-personality = TextSendMessage(text='個性樂觀,可以有條理的安排事情,學習能力高,擅長與人合作執行專案。')
+personality = TextSendMessage(text='樂觀進取，不排斥去接觸或是學習新的事物，喜歡充滿挑戰的生活。')
 
-interesting = TextSendMessage(text='我喜歡聽音樂、跳舞、看youtube')
+interesting = TextSendMessage(text='我喜歡聽音樂、跳舞、看youtube；大學時曾經參加過熱舞社，畢業後也常常聽著之前練舞的音樂放鬆身心。')
 
 education = TemplateSendMessage(
     alt_text='Education',
     template=ButtonsTemplate(
-        thumbnail_image_url='https://www.ntut.edu.tw/ezfiles/21/1021/img/2152/logo.jpg',
+        thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t1.0-9/16114195_1303190386409212_9033059278762952732_n.jpg?_nc_cat=0&oh=80dae332df231e48592642b8588e3707&oe=5B6AE316',
         title='學歷',
         text='碩士班(在學中):國立臺北科技大學 資訊工程學系\n大學(畢業):國立嘉義大學 電機工程學系',
         actions=[
@@ -47,7 +49,7 @@ works = TemplateSendMessage(
             CarouselColumn(
                 thumbnail_image_url='https://goo.gl/TSHPoY',
                 title='智慧型電動助力單車暨行車資訊顯示系統之實現',
-                text='大三專題',
+                text='大三專題，使用Arduino製作，語言：C++。',
                 actions=[
                     PostbackTemplateAction(label='簡介', data='works-intro1'),
                     URITemplateAction(
@@ -59,7 +61,7 @@ works = TemplateSendMessage(
             CarouselColumn(
                 thumbnail_image_url='https://goo.gl/2MxPDu',
                 title='田間自走機器人',
-                text='大四專題',
+                text='大四專題，使用Arduino製作，語言：C++。',
                 actions=[
                     PostbackTemplateAction(label='簡介', data='works-intro2'),
                     URITemplateAction(
@@ -71,7 +73,7 @@ works = TemplateSendMessage(
             CarouselColumn(
                 thumbnail_image_url='https://i.ytimg.com/vi/B3hKuGS1lDE/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIZCGAFwAQ==&rs=AOn4CLCmOe1W_jfs_v75Smu9tPtiiPPrWQ',
                 title='8051俄羅斯方塊',
-                text='大二課程專案',
+                text='大二課程專案，使用8051(一種可程式單晶片)製作，語言：C。',
                 actions=[
                     PostbackTemplateAction(label='簡介', data='works-intro3'),
                     URITemplateAction(
@@ -83,7 +85,7 @@ works = TemplateSendMessage(
             CarouselColumn(
                 thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30806226_1772336019494644_441235318761401904_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEprbZornWvxRBZfWJ5JmaL3pR_F_6P8hPqu4tVVzBYfUIPCIaAbeMQPGXncwRVh-JWhNN0J-SyTnjTKlk-ELpop1cEBvRjjsaHnYU0GKpTYw&oh=d67e5b3958b60c398c80a1a120078e4f&oe=5B50C6E3',
                 title='Fuzzy倒車入庫圖形介面',
-                text='大三課外專案',
+                text='大三課外專案，使用glut，語言：C++。',
                 actions=[
                     PostbackTemplateAction(label='簡介', data='works-intro4'),
                     URITemplateAction(
@@ -95,7 +97,7 @@ works = TemplateSendMessage(
             CarouselColumn(
                 thumbnail_image_url='https://scontent.ftpe2-2.fna.fbcdn.net/v/t31.0-8/30171866_1772331252828454_6163523175446030911_o.jpg?_nc_cat=0&_nc_eui2=v1%3AAeERbMugA9iJGTieZM7h6tmBAkG8pUEVGlBd2eUO1hGr2_P-nx-m7A8NcldbRSb3_vtH2RsNwXEHpZpSFw9dr5648f7CIvuyn98CZWnMGgP0ow&oh=9cd64d8b408b515b85c515d26187d0dc&oe=5B56E453',
                 title='106年扎根高中職資訊科學教育計劃網站',
-                text='研一計畫網站',
+                text='研一計畫網站，語言：HTML/CSS',
                 actions=[
                     PostbackTemplateAction(label='簡介', data='works-intro5'),
                     URITemplateAction(
@@ -188,6 +190,26 @@ tools = TemplateSendMessage(
 
 contact = TextSendMessage(text='這是我的e-mail:\nwei840222@gmail.com')
 
+imagemap_message = ImagemapSendMessage(
+    base_url='https://example.com/base',
+    alt_text='this is an imagemap',
+    base_size=BaseSize(height=1040, width=1040),
+    actions=[
+        URIImagemapAction(
+            link_uri='https://example.com/',
+            area=ImagemapArea(
+                x=0, y=0, width=520, height=1040
+            )
+        ),
+        MessageImagemapAction(
+            text='hello',
+            area=ImagemapArea(
+                x=520, y=0, width=520, height=1040
+            )
+        )
+    ]
+)
+
 msgDict = {
     '你好': hi, '您好': hi, '安': hi, '嗨': hi, '嘿': hi, '哈囉': hi,
     '名字': name, '稱呼': name,
@@ -198,8 +220,10 @@ msgDict = {
     '專長': expertise, '程式': expertise, '會什麼': expertise,
     '作品': works, '專題': works, '專案': works,
     '小工具': tools, '工具': tools,
-    '聯繫方式': contact, '郵件': contact, 'mail': contact
+    '聯繫方式': contact, '郵件': contact, 'mail': contact,
+    'test': imagemap_message
 }
 
 msgListDict = {'works-intro1': worksIntro1, 'works-intro2': worksIntro2,
                'works-intro3': worksIntro3, 'works-intro4': worksIntro4, 'works-intro5': worksIntro5}
+
