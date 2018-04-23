@@ -33,12 +33,17 @@ def callback():
 
 @handler.add(FollowEvent)
 def handle_follow(event):
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text='您好!我是 wei-bot\n很高興認識您，點擊下方選單了解更多資訊...\n輸入 指令 查詢所有指令。'))
+    line_bot_api.push_message(event.source.user_id, TextSendMessage(text='您好！我是 wei-bot\n很高興認識您！'))
+    line_bot_api.push_message(event.source.user_id, StickerSendMessage(package_id=1, sticker_id=5))
+    line_bot_api.push_message(event.source.user_id, TextSendMessage(text='點擊下方選單了解更多資訊...\n輸入 指令 查詢所有指令。'))
 
 @handler.add(JoinEvent)
 def handle_join(event):
     print('added a grp')
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='目前還不支援群組聊天功能喔! '))
+    line_bot_api.push_message(event.source.group_id, TextSendMessage(text='目前還不支援群組聊天功能喔!\n請大家透過以下網址或是掃描QRCode加入好友...'))
+    line_bot_api.push_message(event.source.group_id, TextSendMessage(text='https://line.me/R/ti/p/%40qrc2059q'))
+    line_bot_api.push_message(event.source.group_id, ImageSendMessage(original_content_url='http://qr-official.line.me/L/0QjC1ice-_.png', preview_image_url='http://qr-official.line.me/L/0QjC1ice-_.png'))
+    line_bot_api.push_message(event.source.group_id, StickerSendMessage(package_id=1, sticker_id=4))
     line_bot_api.leave_group(event.source.group_id)
 
 @handler.add(MessageEvent, message=TextMessage)
