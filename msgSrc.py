@@ -39,7 +39,8 @@ education = TemplateSendMessage(
     )
 )
 
-expertise = TextSendMessage(text='我大學時最常用C/C++寫Embedded System，研究所後修了很多資料科學或是機器學習的課，也寫了很多Python，平常做寫程式或是架站都是用Linux；以上的不敢說是專精，但可以說是很熟悉了。')
+expertise = TextSendMessage(
+    text='我大學時最常用C/C++寫Embedded System，研究所後修了很多資料科學或是機器學習的課，也寫了很多Python，平常做寫程式或是架站都是用Linux；以上的不敢說是專精，但可以說是很熟悉了。')
 
 works = TemplateSendMessage(
     alt_text='Works',
@@ -147,17 +148,17 @@ worksIntro1 = [
                 ImageCarouselColumn(
                     image_url='https://goo.gl/bwQi94',
                     action=URITemplateAction(
-                        label='創意專題競賽佳作', uri='https://goo.gl/bwQi94')
+                        label='創意專題佳作', uri='https://goo.gl/bwQi94')
                 ),
                 ImageCarouselColumn(
                     image_url='https://goo.gl/fkW5mM',
                     action=URITemplateAction(
-                        label='電機專題競賽系統組第二名', uri='https://goo.gl/fkW5mM')
+                        label='電機專題系統組第二名', uri='https://goo.gl/fkW5mM')
                 ),
                 ImageCarouselColumn(
                     image_url='https://goo.gl/UPjXx1',
                     action=URITemplateAction(
-                        label='電機專題競賽系統組最佳人氣獎', uri='https://goo.gl/UPjXx1')
+                        label='電機專題系統組最佳人氣獎', uri='https://goo.gl/UPjXx1')
                 )
             ]
         )
