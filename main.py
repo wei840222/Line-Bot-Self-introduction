@@ -31,6 +31,15 @@ def callback():
 
     return 'OK'
 
+@handler.add(FollowEvent)
+def handle_follow(event):
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text='您好!我是 wei-bot\n很高興認識您，點擊下方選單了解更多資訊...\n輸入 指令 查詢所有指令。'))
+
+@handler.add(JoinEvent)
+def handle_join(event):
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='目前還不支援群組聊天功能喔! '))
+    line_bot_api.leave_room(event.source.room_id)
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     # log #
@@ -42,7 +51,7 @@ def handle_message(event):
         print(profile.user_id)
         print(profile.picture_url)
         print(profile.status_message)
-    except LineBotApiError as e:
+    except LineBotApiError:
         print('can\'t get user profile')
     # log #
 
@@ -95,7 +104,7 @@ def handle_sticker_message(event):
     try:
         line_bot_api.reply_message(event.reply_token, StickerSendMessage(
             package_id=event.message.package_id, sticker_id=event.message.sticker_id))
-    except LineBotApiError as e:
+    except LineBotApiError:
         line_bot_api.push_message(
             event.source.user_id, TextSendMessage(text='我沒有這個貼圖QQ'))
         line_bot_api.push_message(
@@ -104,10 +113,9 @@ def handle_sticker_message(event):
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    profile = line_bot_api.get_profile(event.source.user_id)
     if event.postback.data in msgSrc.msgListDict.keys():
         for msg in msgSrc.msgListDict[event.postback.data]:
-            line_bot_api.push_message(profile.user_id, msg)
+            line_bot_api.push_message(event.source.user_id, msg)
 
 
 if __name__ == "__main__":
