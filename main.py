@@ -37,8 +37,9 @@ def handle_follow(event):
 
 @handler.add(JoinEvent)
 def handle_join(event):
+    print('added a grp')
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text='目前還不支援群組聊天功能喔! '))
-    line_bot_api.leave_room(event.source.room_id)
+    line_bot_api.leave_group(event.source.group_id)
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
