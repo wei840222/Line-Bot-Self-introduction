@@ -44,7 +44,7 @@ class Weather():
         for key in self.locationDict.keys():
             if key in queryText.replace('臺', '台'):
                 self.location = key
-        if self.location is not None:
+        if location is not None:
             msgList = list()
             xmlData = self.__getWeatherData(location)
             weatherForecast = self.__getXmlValueFromTag(xmlData, 'parameterValue')
