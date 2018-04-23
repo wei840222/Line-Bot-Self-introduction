@@ -54,5 +54,5 @@ class Weather():
             for text in weatherForecast:
                 msgList.append(TextSendMessage(text=text))
         else:
-            msgList.append(TextSendMessage(text='請輸入XX市/縣天氣，查詢天氣。\nex:台北市天氣'))
+            msgList.append(TextSendMessage(text='請輸入XX(市/縣)天氣，查詢天氣。\nex:台北市天氣 or 高雄天氣'))
         return msgList
