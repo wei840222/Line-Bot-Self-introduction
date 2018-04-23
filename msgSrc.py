@@ -14,9 +14,7 @@ aboutMe = TemplateSendMessage(
             MessageTemplateAction(label='個性', text='個性'),
             MessageTemplateAction(label='興趣', text='興趣'),
             MessageTemplateAction(label='學歷', text='學歷'),
-            MessageTemplateAction(label='專長', text='專長'),
-            URITemplateAction(label='履歷', uri='https://drive.google.com/open?id=1BiQ0Odq9o8N8mgiwP1xstWS1CTaHH8Z6'),
-            URITemplateAction(label='GitHub',uri='https://github.com/wei840222')
+            MessageTemplateAction(label='專長', text='專長')
         ]
     )
 )
@@ -189,9 +187,11 @@ tools = TemplateSendMessage(
 )
 
 contact = TextSendMessage(text='這是我的e-mail:\nwei840222@gmail.com')
+resume = TextSendMessage(text='這是我的履歷:\nhttps://drive.google.com/open?id=1BiQ0Odq9o8N8mgiwP1xstWS1CTaHH8Z6')
+github = TextSendMessage(text='這是我的GitHub:\nhttps://github.com/wei840222')
 
 imagemap_message = ImagemapSendMessage(
-    base_url='https://example.com/base',
+    base_url='https://goo.gl/ByL1hL',
     alt_text='this is an imagemap',
     base_size=BaseSize(height=1040, width=1040),
     actions=[
@@ -221,6 +221,8 @@ msgDict = {
     '作品': works, '專題': works, '專案': works,
     '小工具': tools, '工具': tools,
     '聯繫方式': contact, '郵件': contact, 'mail': contact,
+    '履歷': resume,
+    'github': github, 'GitHub': github,
     'test': imagemap_message
 }
 
