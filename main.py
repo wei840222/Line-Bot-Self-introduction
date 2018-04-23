@@ -31,6 +31,31 @@ def callback():
 
     return 'OK'
 
+
+@handler.add(FollowEvent)
+def handle_follow(event):
+    line_bot_api.push_message(event.source.user_id,
+                              TextSendMessage(text='您好！我是 wei-bot\n很高興認識您！'))
+    line_bot_api.push_message(event.source.user_id,
+                              StickerSendMessage(package_id=1, sticker_id=5))
+    line_bot_api.push_message(event.source.user_id, TextSendMessage(
+        text='點擊下方選單了解更多資訊...\n輸入 指令 查詢所有指令。'))
+
+
+@handler.add(JoinEvent)
+def handle_join(event):
+    print('added a grp')
+    line_bot_api.push_message(event.source.group_id, TextSendMessage(
+        text='目前還不支援群組聊天功能喔!\n請大家透過以下網址或是掃描QRCode加入好友...'))
+    line_bot_api.push_message(event.source.group_id, TextSendMessage(
+        text='https://line.me/R/ti/p/%40qrc2059q'))
+    line_bot_api.push_message(event.source.group_id, ImageSendMessage(
+        original_content_url='https://qr-official.line.me/M/0QjC1ice-_.png', preview_image_url='https://qr-official.line.me/M/0QjC1ice-_.png'))
+    line_bot_api.push_message(event.source.group_id,
+                              StickerSendMessage(package_id=1, sticker_id=4))
+    line_bot_api.leave_group(event.source.group_id)
+
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     # log #
@@ -42,7 +67,7 @@ def handle_message(event):
         print(profile.user_id)
         print(profile.picture_url)
         print(profile.status_message)
-    except LineBotApiError as e:
+    except LineBotApiError:
         print('can\'t get user profile')
     # log #
 
@@ -58,7 +83,8 @@ def handle_message(event):
         for key in msgSrc.msgDict.keys():
             msg += key + ', '
         msg += '時間, 天氣, 新聞, 指令'
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=msg))
+        line_bot_api.reply_message(
+            event.reply_token, TextSendMessage(text=msg))
         return None
 
     # Time App
@@ -95,7 +121,7 @@ def handle_sticker_message(event):
     try:
         line_bot_api.reply_message(event.reply_token, StickerSendMessage(
             package_id=event.message.package_id, sticker_id=event.message.sticker_id))
-    except LineBotApiError as e:
+    except LineBotApiError:
         line_bot_api.push_message(
             event.source.user_id, TextSendMessage(text='我沒有這個貼圖QQ'))
         line_bot_api.push_message(
@@ -104,10 +130,9 @@ def handle_sticker_message(event):
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    profile = line_bot_api.get_profile(event.source.user_id)
     if event.postback.data in msgSrc.msgListDict.keys():
         for msg in msgSrc.msgListDict[event.postback.data]:
-            line_bot_api.push_message(profile.user_id, msg)
+            line_bot_api.push_message(event.source.user_id, msg)
 
 
 if __name__ == "__main__":
