@@ -41,12 +41,9 @@ class Weather():
     def getWeather(self, queryText):
         # find the location users ask in the string of user input
         location = None
-        print(self.locationDict.keys())
-        print(queryText.replace('臺', '台'))
         for key in self.locationDict.keys():
             if key in queryText.replace('臺', '台'):
                 location = key
-        print(location)
         msgList = list()
         if location is not None:
             xmlData = self.__getWeatherData(location)
