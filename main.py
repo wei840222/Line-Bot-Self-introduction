@@ -40,6 +40,8 @@ def handle_follow(event):
                               StickerSendMessage(package_id=1, sticker_id=5))
     line_bot_api.push_message(event.source.user_id, TextSendMessage(
         text='點擊下方選單了解更多資訊...\n輸入 指令 查詢所有指令。'))
+    line_bot_api.push_message(event.source.user_id, TextSendMessage(
+        text='使用說明：\nhttps://github.com/wei840222/Line-Bot-Self-introduction/blob/master/README.md'))
 
 
 @handler.add(JoinEvent)
