@@ -35,6 +35,27 @@ def callback():
     return 'OK'
 
 
+msgDict = {
+    '你好': message.hi, '您好': message.hi,
+    '名字': message.name, '稱呼': message.name,
+    '關於我': message.aboutMe,
+    '個性': message.personality,
+    '興趣': message.interesting, '愛好': message.interesting,
+    '學歷': message.education, '畢業': message.education,
+    '專長': message.expertise, '程式': message.expertise, '會什麼': message.expertise,
+    '作品': message.works, '專題': message.works, '專案': message.works,
+    '小工具': message.tools, '工具': message.tools,
+    '聯繫方式': message.contact, '郵件': message.contact, 'mail': message.contact
+}
+
+locationDict = {
+    '台北市': 'F-C0032-009', '新北市': 'F-C0032-010', '基隆市': 'F-C0032-011', '花蓮縣': 'F-C0032-012', '宜蘭縣': 'F-C0032-013', '金門縣': 'F-C0032-014', '澎湖縣': 'F-C0032-015',
+    '台南市': 'F-C0032-016', '高雄市': 'F-C0032-017', '嘉義縣': 'F-C0032-018', '嘉義市': 'F-C0032-019', '苗栗縣': 'F-C0032-020', '台中市': 'F-C0032-021', '桃園市': 'F-C0032-022',
+    '新竹縣': 'F-C0032-023', '新竹市': 'F-C0032-024', '屏東縣': 'F-C0032-025', '南投縣': 'F-C0032-026', '台東縣': 'F-C0032-027', '彰化縣': 'F-C0032-028', '雲林縣': 'F-C0032-029',
+    '連江縣': 'F-C0032-030'
+}
+
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     # log #
@@ -49,19 +70,6 @@ def handle_message(event):
     except LineBotApiError as e:
         print('can\'t get user profile')
     # log #
-
-    msgDict = {
-        '你好': message.hi, '您好': message.hi,
-        '名字': message.name, '稱呼': message.name,
-        '關於我': message.aboutMe,
-        '個性': message.personality,
-        '興趣': message.interesting, '愛好': message.interesting,
-        '學歷': message.education, '畢業': message.education,
-        '專長': message.expertise, '程式': message.expertise, '會什麼': message.expertise,
-        '作品': message.works, '專題': message.works, '專案': message.works,
-        '小工具': message.tools, '工具': message.tools,
-        '聯繫方式': message.contact, '郵件': message.contact, 'mail': message.contact
-    }
 
     # search key word in msgDict and reply
     for key in msgDict.keys():
@@ -80,12 +88,6 @@ def handle_message(event):
         return None
 
     # weather app
-    locationDict = {
-        '台北市': 'F-C0032-009', '新北市': 'F-C0032-010', '基隆市': 'F-C0032-011', '花蓮縣': 'F-C0032-012', '宜蘭縣': 'F-C0032-013', '金門縣': 'F-C0032-014', '澎湖縣': 'F-C0032-015',
-        '台南市': 'F-C0032-016', '高雄市': 'F-C0032-017', '嘉義縣': 'F-C0032-018', '嘉義市': 'F-C0032-019', '苗栗縣': 'F-C0032-020', '台中市': 'F-C0032-021', '桃園市': 'F-C0032-022',
-        '新竹縣': 'F-C0032-023', '新竹市': 'F-C0032-024', '屏東縣': 'F-C0032-025', '南投縣': 'F-C0032-026', '台東縣': 'F-C0032-027', '彰化縣': 'F-C0032-028', '雲林縣': 'F-C0032-029',
-        '連江縣': 'F-C0032-030'
-    }
     if '天氣' in event.message.text:
         # find the location users ask in the string of user input
         location = None
@@ -133,15 +135,19 @@ def handle_message(event):
     line_bot_api.push_message(profile.user_id, TextSendMessage(
         text='我不了解「' + event.message.text + '」是什麼意思。'))
 
+
 @handler.add(MessageEvent, message=StickerMessage)
 def handle_sticker_message(event):
     # echo sticker
     print(event.message.package_id, event.message.sticker_id)
     try:
-        line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id=event.message.package_id, sticker_id=event.message.sticker_id))
+        line_bot_api.reply_message(event.reply_token, StickerSendMessage(
+            package_id=event.message.package_id, sticker_id=event.message.sticker_id))
     except LineBotApiError as e:
-        line_bot_api.push_message(event.source.user_id, TextSendMessage(text='我沒有這個貼圖QQ'))
-        line_bot_api.push_message(event.source.user_id, StickerSendMessage(package_id=2, sticker_id=154))
+        line_bot_api.push_message(
+            event.source.user_id, TextSendMessage(text='我沒有這個貼圖QQ'))
+        line_bot_api.push_message(
+            event.source.user_id, StickerSendMessage(package_id=2, sticker_id=154))
 
 
 @handler.add(PostbackEvent)
@@ -152,6 +158,7 @@ def handle_postback(event):
     if event.postback.data in msgListDict.keys():
         for msg in msgListDict[event.postback.data]:
             line_bot_api.push_message(profile.user_id, msg)
+
 
 if __name__ == "__main__":
     app.run()
