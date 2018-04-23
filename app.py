@@ -29,7 +29,7 @@ class Weather():
     def __getWeatherData(self, location):
         # get data from gov weather restful api
         url = 'http://opendata.cwb.gov.tw/opendataapi?dataid=' + \
-        Weather.locationDict[location] + '&authorizationkey=' + self.WEATHER_API_KEY
+        self.locationDict[location] + '&authorizationkey=' + self.WEATHER_API_KEY
         return requests.get(url).text
 
     def __getXmlValueFromTag(self, xmlData, tag):
@@ -41,7 +41,7 @@ class Weather():
     def getWeather(self, queryText):
         # find the location users ask in the string of user input
         location = None
-        for key in Weather.locationDict.keys():
+        for key in self.locationDict.keys():
             if key in queryText.replace('臺', '台'):
                 self.location = key
         if self.location is not None:
