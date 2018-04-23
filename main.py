@@ -58,7 +58,7 @@ def handle_message(event):
         for key in msgSrc.msgDict.keys():
             msg += key + ', '
         msg = msg[:len(msg)-1]
-        line_bot_api.reply_message(event.reply_token, msg)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=msg))
         return None
 
     # Time App
