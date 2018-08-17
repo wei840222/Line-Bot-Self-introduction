@@ -1,4 +1,4 @@
-# Line-Bot-Self-introduction
+# wei LINE Chat Bot
 
 ## 主要功能
 **選單呼叫內容、聊天呼叫內容、單純應答、貼圖回復**
